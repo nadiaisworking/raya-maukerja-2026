@@ -789,21 +789,22 @@ body::before {
 
 /* Screenshot Export Template (Instagram Story Size: 1080x1920) */
 .screenshot-export-container {
-    display: none; /* Only show via JS during capture */
+    display: none; /* Safely hidden from view and layout */
+    visibility: hidden;
+    pointer-events: none;
     position: absolute;
     left: -9999px;
     top: 0;
     width: 1080px;
     height: 1920px;
-    background: linear-gradient(135deg, #eef7ed 0%, #d1ead4 100%);
-    display: flex;
     flex-direction: column;
+    background: linear-gradient(135deg, #eef7ed 0%, #d1ead4 100%);
     padding: 100px 80px;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
     color: var(--text-primary);
     overflow: hidden;
-    position: relative;
+    z-index: -100;
 }
 
 .screenshot-export-container::before {
@@ -822,20 +823,13 @@ body::before {
     z-index: 2;
 }
 
-.export-moon-lantern {
-    top: 60px;
-    right: 80px;
-    font-size: 140px;
-    opacity: 0.8;
-    filter: drop-shadow(0 10px 20px rgba(217, 119, 6, 0.2));
-}
-
 .export-ketupat-float {
-    bottom: 120px;
+    bottom: 80px;
     left: 40px;
-    font-size: 100px;
-    opacity: 0.6;
+    font-size: 120px;
+    opacity: 0.8;
     transform: rotate(-15deg);
+    filter: drop-shadow(0 10px 20px rgba(5, 150, 105, 0.2));
 }
 
 .export-sparkles {
@@ -861,9 +855,9 @@ body::before {
 }
 
 .export-logo {
-    height: 80px;
-    margin-bottom: 30px;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.05));
+    height: 120px;
+    margin-bottom: 40px;
+    filter: drop-shadow(0 6px 15px rgba(0,0,0,0.1));
 }
 
 .export-title {
@@ -871,9 +865,22 @@ body::before {
     font-weight: 900;
     color: var(--raya-green-dark);
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-shadow: 0 4px 10px rgba(5, 150, 105, 0.1);
 }
+
+/* Header Ketupat Ornaments */
+.header-ketupat-left, .header-ketupat-right {
+    position: absolute;
+    top: -40px;
+    width: 200px;
+    height: auto;
+    opacity: 0.9;
+    z-index: 5;
+}
+
+.header-ketupat-left { left: 0; }
+.header-ketupat-right { right: 0; transform: scaleX(-1); }
 
 .export-roles {
     position: relative;
