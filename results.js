@@ -48,38 +48,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Duit Raya Prize Logic
     const commonPrizes = [0.30, 0.36, 0.41, 0.45, 0.48, 0.53, 0.58, 0.70, 0.69, 0.67, 0.74, 0.81, 0.89, 0.94, 1.23, 1.30, 1.40, 1.50, 1.78, 2.20, 2.50, 2.80, 3.00, 3.33, 3.60];
     const bigPrizes = [4.00, 4.40, 4.80, 5.10, 5.40, 5.60, 6.00, 7.00, 10.00, 12.50];
+    let selectedPrize = null;
 
     function getRandomPrize() {
         const today = new Date().toISOString().split('T')[0];
         const lastBigPrizeDate = localStorage.getItem('lastBigPrizeDate');
-        
         let pool = [...commonPrizes];
-        
-        // Rule: Big prizes only once a day
-        if (lastBigPrizeDate !== today) {
-            pool = pool.concat(bigPrizes);
-        }
-
+        if (lastBigPrizeDate !== today) { pool = pool.concat(bigPrizes); }
         const win = pool[Math.floor(Math.random() * pool.length)];
-        
-        // If big prize is won, mark today as used
-        if (bigPrizes.includes(win)) {
-            localStorage.setItem('lastBigPrizeDate', today);
-        }
-
+        if (bigPrizes.includes(win)) { localStorage.setItem('lastBigPrizeDate', today); }
         return win.toFixed(2);
     }
 
     if (envelopesContainer) {
         const envelopes = document.querySelectorAll('.envelope-item');
+        const revealContainer = document.getElementById('prize-reveal-container');
+        const blurredDisplay = document.getElementById('blurred-prize-display');
+
         envelopes.forEach(env => {
             env.addEventListener('click', function() {
                 if (this.classList.contains('disabled')) return;
-
-                // Disable all envelopes
                 envelopes.forEach(e => e.classList.add('disabled'));
                 
-                // Shake and Open Animation
                 this.classList.add('shaking');
                 
                 setTimeout(() => {
@@ -87,25 +77,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.classList.add('opening');
                     
                     setTimeout(() => {
-                        const prize = getRandomPrize();
-                        prizeAmountDisplay.textContent = `RM${prize}`;
-                        prizeModal.classList.remove('hidden');
+                        selectedPrize = getRandomPrize();
+                        blurredDisplay.textContent = `RM${selectedPrize}`;
+                        revealContainer.classList.remove('hidden');
+                        
+                        // Scroll to reveal section
+                        revealContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }, 600);
                 }, 1000);
             });
         });
     }
 
-    // 3. Screenshot/Download/Share Logic
-    if (downloadResultBtn) {
-        downloadResultBtn.addEventListener('click', async () => {
-            // Update UI to show progress
-            const originalText = downloadResultBtn.innerHTML;
-            downloadResultBtn.disabled = true;
-            downloadResultBtn.innerHTML = '🕒 Generating...';
+    // 3. Screenshot/Share & Unlock Logic
+    const unlockBtn = document.getElementById('unlock-btn');
+    if (unlockBtn) {
+        unlockBtn.addEventListener('click', async () => {
+            const originalText = unlockBtn.innerHTML;
+            unlockBtn.disabled = true;
+            unlockBtn.innerHTML = '🕒 Generating...';
 
             try {
-                // 1. Populate Export Template
+                // 1. Generate Image
                 if (exportRolesList) {
                     const medals = ["🥇", "🥈", "🥉"];
                     exportRolesList.innerHTML = roles.map((role, index) => `
@@ -119,25 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     `).join('');
                 }
 
-                // 2. Capture Canvas
                 screenshotTemplate.style.display = 'flex';
                 screenshotTemplate.style.visibility = 'visible';
-                
-                const canvas = await html2canvas(screenshotTemplate, {
-                    useCORS: true,
-                    scale: 2,
-                    backgroundColor: null
-                });
-
+                const canvas = await html2canvas(screenshotTemplate, { useCORS: true, scale: 2 });
                 screenshotTemplate.style.display = 'none';
                 screenshotTemplate.style.visibility = 'hidden';
 
-                // 3. Share or Download
                 const dataUrl = canvas.toDataURL('image/png');
                 const blob = await (await fetch(dataUrl)).blob();
                 const file = new File([blob], 'Peranan_Raya_Maukerja.png', { type: 'image/png' });
 
-                // Check if Web Share API supports file sharing
+                // 2. Trigger Share
+                let shareSuccess = false;
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     try {
                         await navigator.share({
@@ -145,22 +131,63 @@ document.addEventListener('DOMContentLoaded', () => {
                             title: 'Peranan Raya Saya 🌙',
                             text: 'Tengok peranan Raya saya tahun ni! Cuba korang punya kat: raya-maukerja-2026.vercel.app'
                         });
+                        shareSuccess = true;
                     } catch (shareErr) {
-                        // Fallback to download if user cancels or share fails
-                        if (shareErr.name !== 'AbortError') {
+                        if (shareErr.name === 'AbortError') {
+                             shareSuccess = true;
+                        } else {
                             triggerDownload(dataUrl);
+                            shareSuccess = true;
                         }
                     }
                 } else {
-                    // Fallback for Desktop
                     triggerDownload(dataUrl);
+                    shareSuccess = true;
+                }
+
+                // 3. Reveal Prize
+                if (shareSuccess) {
+                    const blurredDisplay = document.getElementById('blurred-prize-display');
+                    const unlockHint = document.getElementById('unlock-hint');
+                    
+                    blurredDisplay.classList.add('prize-amount-revealed');
+                    unlockBtn.innerHTML = '💰 Claim Duit Raya Sekarang!';
+                    unlockBtn.classList.add('btn-whatsapp'); 
+                    unlockHint.innerHTML = `💰 Tahniah! Anda dapat <strong>RM${selectedPrize}</strong> Duit Raya!`;
+
+                    unlockBtn.onclick = () => {
+                        prizeAmountDisplay.textContent = `RM${selectedPrize}`;
+                        prizeModal.classList.remove('hidden');
+                    };
                 }
                 
             } catch (err) {
                 console.error('Action failed:', err);
                 alert('Maaf, ada masalah teknikal. Sila cuba lagi!');
             } finally {
-                downloadResultBtn.disabled = false;
+                unlockBtn.disabled = false;
+                if (!unlockBtn.classList.contains('btn-whatsapp')) {
+                    unlockBtn.innerHTML = originalText;
+                }
+            }
+        });
+    }
+
+    if (downloadResultBtn) {
+        downloadResultBtn.addEventListener('click', async () => {
+            const originalText = downloadResultBtn.innerHTML;
+            downloadResultBtn.disabled = true;
+            downloadResultBtn.innerHTML = '🕒 Generating...';
+            try {
+                screenshotTemplate.style.display = 'flex';
+                screenshotTemplate.style.visibility = 'visible';
+                const canvas = await html2canvas(screenshotTemplate, { useCORS: true, scale: 2 });
+                screenshotTemplate.style.display = 'none';
+                screenshotTemplate.style.visibility = 'hidden';
+                triggerDownload(canvas.toDataURL('image/png'));
+            } catch (err) { alert('Sila cuba lagi!'); }
+            finally { 
+                downloadResultBtn.disabled = false; 
                 downloadResultBtn.innerHTML = originalText;
             }
         });

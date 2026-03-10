@@ -1399,3 +1399,80 @@ body::before {
     .envelope-card { font-size: 4rem; }
     .prize-amount { font-size: 3.5rem; }
 }
+
+/* Duit Raya Unlock Mechanic */
+.social-proof-tag {
+    display: inline-block;
+    background: rgba(251, 191, 36, 0.15);
+    color: var(--raya-gold);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.prize-reveal-container {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px dashed rgba(5, 150, 105, 0.2);
+    animation: fadeIn 0.5s ease;
+}
+
+.prize-amount-box {
+    margin-bottom: 1rem;
+}
+
+.prize-label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.prize-amount-blurred {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--raya-green);
+    filter: blur(8px);
+    opacity: 0.6;
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    user-select: none;
+}
+
+.prize-amount-revealed {
+    filter: blur(0);
+    opacity: 1;
+    background: linear-gradient(135deg, var(--raya-green), var(--raya-gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.unlock-hint {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.btn-unlock {
+    background: var(--raya-green);
+    color: white;
+    padding: 1.2rem;
+    font-size: 1.1rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.btn-unlock:hover {
+    background: var(--raya-green-dark);
+    transform: translateY(-3px) scale(1.02);
+}
+
+.mt-4 { margin-top: 1.5rem; }
+.w-full { width: 100%; }

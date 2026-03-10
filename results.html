@@ -89,10 +89,11 @@
             </div>
 
             <!-- Reward Section -->
-            <div class="reward-section-wrapper">
+            <div class="reward-section-wrapper" id="reward-section">
                 <div class="reward-header">
+                    <div class="social-proof-tag">🔥 124 orang dah buka sampul mereka hari ini</div>
                     <h2 class="reward-title">🎁 Buka Sampul Duit Raya Anda!</h2>
-                    <p class="reward-desc">Kami sediakan 3 sampul duit raya untuk anda. Pilih satu sampul untuk claim duit raya! 💫</p>
+                    <p class="reward-desc">Kami sediakan 3 sampul duit raya untuk anda. Pilih satu sampul untuk cuba nasib anda! 💫</p>
                 </div>
                 
                 <div class="envelopes-grid" id="envelopes-container">
@@ -117,6 +118,18 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div id="prize-reveal-container" class="prize-reveal-container hidden">
+                    <div class="prize-amount-box">
+                        <span class="prize-label">💰 Duit Raya Anda:</span>
+                        <div id="blurred-prize-display" class="prize-amount-blurred">RM ? ? ?</div>
+                    </div>
+                    <p id="unlock-hint" class="unlock-hint">🔓 Kongsi result anda untuk buka jumlah Duit Raya!</p>
+                    
+                    <button id="unlock-btn" class="btn btn-primary btn-unlock mt-4">
+                        📸 Post Result & Claim Duit Raya
+                    </button>
                 </div>
             </div>
 
