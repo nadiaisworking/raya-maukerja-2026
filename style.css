@@ -152,7 +152,7 @@ body::before {
 /* Main Content Wrapper - Single Column */
 .main-container {
     max-width: 600px;
-    margin: 4rem auto 0 auto;
+    margin: 12rem auto 0 auto; /* CLEAR HANGING ORNAMENTS */
     padding: 0 1.5rem 2.5rem 1.5rem;
     position: relative;
     z-index: 10;
@@ -677,7 +677,7 @@ body::before {
     }
 
     .main-container {
-        margin-top: 0;
+        margin-top: 130px; /* CLEAR HANGING ORNAMENTS ON MOBILE */
         padding-bottom: 3rem; 
     }
 
