@@ -173,25 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (downloadResultBtn) {
-        downloadResultBtn.addEventListener('click', async () => {
-            const originalText = downloadResultBtn.innerHTML;
-            downloadResultBtn.disabled = true;
-            downloadResultBtn.innerHTML = '🕒 Generating...';
-            try {
-                screenshotTemplate.style.display = 'flex';
-                screenshotTemplate.style.visibility = 'visible';
-                const canvas = await html2canvas(screenshotTemplate, { useCORS: true, scale: 2 });
-                screenshotTemplate.style.display = 'none';
-                screenshotTemplate.style.visibility = 'hidden';
-                triggerDownload(canvas.toDataURL('image/png'));
-            } catch (err) { alert('Sila cuba lagi!'); }
-            finally { 
-                downloadResultBtn.disabled = false; 
-                downloadResultBtn.innerHTML = originalText;
-            }
-        });
-    }
 
     function triggerDownload(dataUrl) {
         const link = document.createElement('a');
