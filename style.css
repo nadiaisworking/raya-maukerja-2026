@@ -17,9 +17,16 @@
     padding: 0;
 }
 
+html, body {
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+}
+
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-light);
     color: var(--text-primary);
     overflow-x: hidden;
     position: relative;
@@ -143,8 +150,8 @@ body::before {
 /* Main Content Wrapper - Single Column */
 .main-container {
     max-width: 600px;
-    margin: 4rem auto;
-    padding: 0 1.5rem 2rem 1.5rem;
+    margin: 4rem auto 0 auto;
+    padding: 0 1.5rem 0 1.5rem;
     position: relative;
     z-index: 10;
 }
@@ -289,8 +296,8 @@ body::before {
 /* Header - Reduced padding to save space */
 .main-container {
     max-width: 600px;
-    margin: 5.5rem auto 2rem auto; /* Adjusted for better balance */
-    padding: 0 1.5rem 2rem 1.5rem;
+    margin: 5.5rem auto 0 auto; 
+    padding: 0 1.5rem 0 1.5rem;
     position: relative;
     z-index: 10;
 }
@@ -788,102 +795,157 @@ body::before {
     top: 0;
     width: 1080px;
     height: 1920px;
-    background: var(--bg-light);
+    background: linear-gradient(135deg, #eef7ed 0%, #d1ead4 100%);
     display: flex;
     flex-direction: column;
-    padding: 80px;
+    padding: 100px 80px;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
     color: var(--text-primary);
     overflow: hidden;
-    background-image: radial-gradient(circle at top right, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at bottom left, rgba(217, 119, 6, 0.1) 0%, transparent 50%);
+    position: relative;
 }
 
 .screenshot-export-container::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0l25 25-25 25L25 25z' fill='%23059669' fill-opacity='0.1'/%3E%3Cpath d='M50 50l25 25-25 25-25-25z' fill='%23d97706' fill-opacity='0.08'/%3E%3C/svg%3E");
-    background-size: 200px 200px;
-    z-index: 0;
+    background-image: radial-gradient(circle at 20% 20%, rgba(5, 150, 105, 0.05) 0%, transparent 40%),
+                      radial-gradient(circle at 80% 80%, rgba(217, 119, 6, 0.05) 0%, transparent 40%);
+    z-index: 1;
+}
+
+/* Decorative Ornaments for Export */
+.export-decor {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.export-moon-lantern {
+    top: 60px;
+    right: 80px;
+    font-size: 140px;
+    opacity: 0.8;
+    filter: drop-shadow(0 10px 20px rgba(217, 119, 6, 0.2));
+}
+
+.export-ketupat-float {
+    bottom: 120px;
+    left: 40px;
+    font-size: 100px;
+    opacity: 0.6;
+    transform: rotate(-15deg);
+}
+
+.export-sparkles {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(circle, #fbbf24 2px, transparent 2px),
+        radial-gradient(circle, #059669 2px, transparent 2px);
+    background-size: 120px 120px;
+    background-position: 0 0, 60px 60px;
+    opacity: 0.1;
+    z-index: 1;
 }
 
 .export-header {
     position: relative;
-    z-index: 1;
+    z-index: 10;
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .export-logo {
-    height: 100px;
-    margin-bottom: 40px;
+    height: 80px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.05));
 }
 
 .export-title {
-    font-size: 64px;
-    font-weight: 800;
+    font-size: 72px;
+    font-weight: 900;
     color: var(--raya-green-dark);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 10px rgba(5, 150, 105, 0.1);
 }
 
 .export-roles {
     position: relative;
-    z-index: 1;
+    z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    flex-grow: 1;
+    gap: 30px;
+    padding: 0 20px;
 }
 
 .export-role-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 40px;
-    padding: 60px;
-    border: 3px solid rgba(5, 150, 105, 0.1);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    padding: 45px 50px;
+    border: 3px solid rgba(5, 150, 105, 0.15);
+    box-shadow: 0 20px 40px rgba(6, 78, 59, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+}
+
+.export-rank {
+    font-size: 100px;
+    flex-shrink: 0;
+}
+
+.export-role-content {
+    flex-grow: 1;
 }
 
 .export-role-title {
-    font-size: 48px;
-    font-weight: 800;
-    margin-bottom: 20px;
+    font-size: 44px;
+    font-weight: 900;
+    margin-bottom: 12px;
     color: var(--text-primary);
 }
 
 .export-role-desc {
     font-size: 32px;
-    line-height: 1.5;
+    line-height: 1.4;
     color: var(--text-secondary);
 }
+
+/* Rank specific highlights */
+.export-role-card:nth-child(1) { border-left: 15px solid #fbbf24; }
+.export-role-card:nth-child(2) { border-left: 15px solid #9ca3af; }
+.export-role-card:nth-child(3) { border-left: 15px solid #d97706; }
 
 .export-footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 40px;
-    font-size: 32px;
-    border-top: 2px solid rgba(5, 150, 105, 0.1);
-    color: var(--text-secondary);
-}
-
-.export-decorations .export-moon {
     position: absolute;
-    top: 100px;
+    bottom: 80px;
+    left: 80px;
     right: 80px;
-    font-size: 120px;
-    opacity: 0.2;
+    z-index: 10;
+    text-align: center;
+    padding-top: 50px;
+    border-top: 3px solid rgba(5, 150, 105, 0.1);
 }
 
-.export-decorations .export-ketupat {
-    position: absolute;
-    bottom: 200px;
-    font-size: 150px;
-    opacity: 0.1;
+.export-footer-text {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--raya-green-dark);
+    margin-bottom: 10px;
 }
 
-.export-ketupat.left { left: 40px; }
-.export-ketupat.right { right: 40px; }
+.export-url {
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--text-primary);
+}
 
 #next-step-btn, .btn-primary {
     width: 100%;
@@ -1106,6 +1168,7 @@ body::before {
     font-weight: 900;
     background: linear-gradient(135deg, var(--raya-green), var(--raya-gold));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 1.5rem;
 }

@@ -107,10 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // 1. Populate Export Template
                 if (exportRolesList) {
-                    exportRolesList.innerHTML = roles.map(role => `
+                    const medals = ["🥇", "🥈", "🥉"];
+                    exportRolesList.innerHTML = roles.map((role, index) => `
                         <div class="export-role-card">
-                            <h3 class="export-role-title">${role.title} ${role.icon}</h3>
-                            <p class="export-role-desc">${role.desc}</p>
+                            <div class="export-rank">${medals[index] || "✨"}</div>
+                            <div class="export-role-content">
+                                <h3 class="export-role-title">${role.title}</h3>
+                                <p class="export-role-desc">${role.desc}</p>
+                            </div>
                         </div>
                     `).join('');
                 }
