@@ -47,12 +47,12 @@ body::before {
 
 /* Background Ornaments */
 .Raya-ornaments {
-    position: absolute;
-    top: 100%; /* HANG FROM BOTTOM OF HEADER */
+    position: fixed;
+    top: 59px; /* HANG FROM BOTTOM OF HEADER (APPROX HEIGHT) */
     left: 0; 
     width: 100%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 2005; /* ON TOP OF HEADER (Z-INDEX 100) AND NOTIFICATION (Z-INDEX 2000) */
 }
 
 .star {
@@ -101,6 +101,7 @@ body::before {
     position: sticky;
     top: 0;
     z-index: 100;
+    overflow: visible !important;
 }
 
 .logo {
@@ -573,12 +574,15 @@ body::before {
 /* Corner Decorations */
 .corner-decor {
     position: absolute;
-    width: 65px;
+    width: 80px;
     height: 130px;
     pointer-events: none;
-    z-index: 1; /* Below other content but visible */
+    z-index: 2006; 
     top: 0;
     filter: drop-shadow(0 8px 15px rgba(5, 150, 105, 0.1));
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 
