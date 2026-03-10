@@ -763,19 +763,22 @@ body::before {
 }
 
 .btn-screenshot {
-    background: #ffffff;
-    color: var(--raya-green-dark);
-    border: 2px dashed var(--raya-green);
-    padding: 1.25rem 2rem;
-    font-size: 1.1rem;
+    background: var(--raya-green);
+    color: #ffffff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
     width: auto;
-    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.1);
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .btn-screenshot:hover {
-    background: var(--bg-light);
-    transform: translateY(-2px);
-    border-style: solid;
+    background: var(--raya-green-dark);
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 12px 25px rgba(5, 150, 105, 0.4);
 }
 
 /* Screenshot Export Template (Instagram Story Size: 1080x1920) */
