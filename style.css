@@ -268,6 +268,31 @@ body::before {
     100% { transform: translateY(-15px) rotate(3deg); }
 }
 
+/* Mobile Mascot - Responsive Adjustment */
+@media (max-width: 768px) {
+    .mascot-side-container {
+        bottom: 5px; /* Tighter to corner */
+        right: 5px;
+        z-index: 2; /* Stay under main elements but visible */
+    }
+
+    .hero-mascot {
+        height: 85px; /* Significantly smaller */
+        width: auto;
+        opacity: 0.9;
+        animation: floatMobilePeeking 5s ease-in-out infinite alternate;
+        /* Peeking effect: slightly rotated and pushed toward corner */
+        transform-origin: bottom right;
+        filter: drop-shadow(0 10px 20px rgba(5, 150, 105, 0.1));
+    }
+
+    @keyframes floatMobilePeeking {
+        0% { transform: rotate(15deg) translate(15px, 15px); }
+        100% { transform: rotate(10deg) translate(8px, 8px); }
+    }
+}
+
+
 /* Pelita - Fixed Bottom Left Anchor */
 .pelita-side-decor {
     position: fixed;
