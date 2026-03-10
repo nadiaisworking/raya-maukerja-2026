@@ -48,10 +48,11 @@ body::before {
 /* Background Ornaments */
 .Raya-ornaments {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 100%; /* HANG FROM BOTTOM OF HEADER */
+    left: 0; 
+    width: 100%;
     pointer-events: none;
     z-index: 1;
-    overflow: hidden;
 }
 
 .star {
@@ -571,7 +572,7 @@ body::before {
 
 /* Corner Decorations */
 .corner-decor {
-    position: absolute; /* Changed from fixed to scroll with page */
+    position: absolute;
     width: 65px;
     height: 130px;
     pointer-events: none;
@@ -582,12 +583,12 @@ body::before {
 
 
 .corner-top-left {
-    top: 85px; /* BELOW STICKY HEADER */
+    top: 0; 
     left: 20px;
 }
 
 .corner-top-right {
-    top: 85px; /* BELOW STICKY HEADER */
+    top: 0; 
     right: 20px;
 }
 
@@ -625,6 +626,9 @@ body::before {
         padding: 0 10px;
         line-height: 1.25;
         z-index: 50;
+        max-width: 280px; /* Force into two lines */
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .hero-subtitle {
@@ -693,7 +697,7 @@ body::before {
     }
     
     .raya-notification.show {
-        transform: translateX(-50%) translateY(0) !important;
+        transform: translateX(-50%) translateY(20px) !important; /* Move down to be visible below header */
         opacity: 1 !important;
     }
 
@@ -776,9 +780,9 @@ body::before {
         transform-origin: bottom right;
     }
 
-    @keyframes floatMobilePeeking {
-        0% { transform: rotate(15deg) translate(8px, 8px); }
-        100% { transform: rotate(10deg) translate(4px, 4px); }
+    /* Pelita - Hide on mobile */
+    .pelita-side-decor {
+        display: none !important;
     }
 }
 
