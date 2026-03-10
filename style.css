@@ -94,7 +94,7 @@ body::before {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 3rem;
+    padding: 1rem 100px; /* INCREASED PADDING TO CENTER CONTENT & CLEAR ORNAMENTS */
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
@@ -588,12 +588,12 @@ body::before {
 
 .corner-top-left {
     top: 0; 
-    left: 20px;
+    left: 10px; /* PUSHED TO EDGE ON DESKTOP */
 }
 
 .corner-top-right {
     top: 0; 
-    right: 20px;
+    right: 10px; /* PUSHED TO EDGE ON DESKTOP */
 }
 
 .hidden { display: none !important; }
@@ -651,7 +651,7 @@ body::before {
 
     /* Header adjustments - Improved Spacing */
     .header {
-        padding: 0.8rem 1rem;
+        padding: 0.8rem 1rem !important; /* MAINTAIN COMPACT MOBILE HEADER */
         gap: 0.5rem;
     }
 
