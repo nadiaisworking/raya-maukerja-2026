@@ -595,30 +595,56 @@ body::before {
 
 /* Mobile Optimization */
 @media (max-width: 768px) {
-    /* Hide decorative elements that overlap content */
+    /* Hide heavy decorative elements */
     .pelita-side-decor,
-    .star {
+    .star,
+    .corner-decor svg {
         display: none !important;
     }
 
-    /* Hero Section Spacing & Alignment - Focused on Ketupat Clearance */
+    /* Replace Ketupats with lighter decorations */
+    .corner-decor::before {
+        content: '✨';
+        position: absolute;
+        top: 10px;
+        font-size: 1.5rem;
+        opacity: 0.7;
+        z-index: 1;
+    }
+
+    .corner-top-left::before { left: 15px; content: '🌙'; }
+    .corner-top-right::before { right: 15px; content: '✨'; }
+
+    /* Hero Section Spacing & Hierarchy */
     .hero-section {
-        padding-top: 140px; /* Title starts below ketupats */
+        padding-top: 20px;
         padding-bottom: 20px;
         text-align: center;
+        z-index: 5;
+        position: relative;
     }
 
     .hero-title {
         font-size: 1.6rem;
-        margin-bottom: 0.75rem;
+        margin-top: 38px; /* ~1cm gap below popup */
+        margin-bottom: 38px; /* ~1cm gap above subtitle */
         padding: 0 10px;
-        line-height: 1.2;
+        line-height: 1.25;
+        z-index: 5;
     }
 
-    .hero-subtitle, .hero-promo {
+    .hero-subtitle {
         text-align: center;
         padding: 0 15px;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
+        margin-bottom: 38px; /* ~1cm gap below subtitle */
+        z-index: 5;
+    }
+
+    .hero-promo {
+        text-align: center;
+        font-size: 1rem;
+        z-index: 5;
     }
 
     /* Header adjustments - Improved Spacing */
@@ -653,22 +679,25 @@ body::before {
         padding-bottom: 3rem; 
     }
 
-    /* Notification overlap fix - Positioned between ketupats */
+    /* Notification (Winner Popup) - Compact & Better Spacing */
     .raya-notification {
-        top: 100px; 
-        font-size: 0.7rem; 
-        padding: 4px 10px;
-        position: absolute;
-        margin: 0 auto;
-        left: 50%;
-        transform: translateX(-50%) !important;
+        top: 0;
+        position: relative;
+        margin: 10px auto 38px auto; /* Added bottom margin for spacing */
+        padding: 6px 14px;
+        font-size: 13px;
+        border-radius: 20px;
+        transform: none !important;
         opacity: 1 !important;
         visibility: visible !important;
-        box-shadow: 0 5px 15px rgba(6, 78, 59, 0.1);
+        z-index: 10;
+        width: fit-content;
+        max-width: 85vw;
+        box-shadow: 0 4px 12px rgba(6, 78, 59, 0.08);
     }
     
     .raya-notification.show {
-        transform: translateX(-50%) !important;
+        transform: none !important;
     }
 
     /* Form Card Refinement */
