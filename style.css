@@ -593,7 +593,7 @@ body::before {
 
 .hidden { display: none !important; }
 
-/* Mobile Optimization */
+/* Mobile Optimization (Lighter & Balanced) */
 @media (max-width: 768px) {
     /* Hide heavy decorative elements */
     .pelita-side-decor,
@@ -604,11 +604,10 @@ body::before {
 
     /* Replace Ketupats with lighter decorations */
     .corner-decor::before {
-        content: '✨';
         position: absolute;
-        top: 10px;
-        font-size: 1.5rem;
-        opacity: 0.7;
+        top: 15px;
+        font-size: 2rem; /* Larger as requested */
+        opacity: 0.9;   /* More visible */
         z-index: 1;
     }
 
@@ -620,7 +619,7 @@ body::before {
         padding-top: 20px;
         padding-bottom: 20px;
         text-align: center;
-        z-index: 5;
+        z-index: 50; /* Higher to stay above decorations */
         position: relative;
     }
 
@@ -630,7 +629,7 @@ body::before {
         margin-bottom: 38px; /* ~1cm gap above subtitle */
         padding: 0 10px;
         line-height: 1.25;
-        z-index: 5;
+        z-index: 50;
     }
 
     .hero-subtitle {
@@ -638,13 +637,13 @@ body::before {
         padding: 0 15px;
         font-size: 0.95rem;
         margin-bottom: 38px; /* ~1cm gap below subtitle */
-        z-index: 5;
+        z-index: 50;
     }
 
     .hero-promo {
         text-align: center;
         font-size: 1rem;
-        z-index: 5;
+        z-index: 50;
     }
 
     /* Header adjustments - Improved Spacing */
@@ -667,7 +666,7 @@ body::before {
     }
 
     .nav {
-        gap: 0.75rem; /* Pushes links away from logo area */
+        gap: 0.75rem;
     }
 
     .nav-link {
@@ -679,25 +678,27 @@ body::before {
         padding-bottom: 3rem; 
     }
 
-    /* Notification (Winner Popup) - Compact & Better Spacing */
+    /* Notification (Winner Popup) - Centered & Correct Spacing */
     .raya-notification {
         top: 0;
-        position: relative;
-        margin: 10px auto 38px auto; /* Added bottom margin for spacing */
-        padding: 6px 14px;
-        font-size: 13px;
-        border-radius: 20px;
-        transform: none !important;
+        left: 50% !important;
+        position: relative !important;
+        transform: translateX(-50%) !important;
+        margin: 10px auto 38px auto !important; /* ~1cm bottom gap */
+        padding: 6px 14px !important;
+        font-size: 13px !important;
+        border-radius: 20px !important;
         opacity: 1 !important;
         visibility: visible !important;
-        z-index: 10;
-        width: fit-content;
-        max-width: 85vw;
-        box-shadow: 0 4px 12px rgba(6, 78, 59, 0.08);
+        z-index: 100 !important;
+        width: fit-content !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 12px rgba(6, 78, 59, 0.08) !important;
     }
     
     .raya-notification.show {
-        transform: none !important;
+        transform: translateX(-50%) !important;
+        opacity: 1 !important;
     }
 
     /* Form Card Refinement */
@@ -916,16 +917,8 @@ body::before {
     opacity: 1;
 }
 
-@media (max-width: 600px) {
-    .raya-notification {
-        top: 80px;
-        font-size: 0.75rem;
-        padding: 6px 12px;
-        width: 90%;
-        max-width: 320px;
-        justify-content: center;
-    }
-}
+/* Redundant media query removed to prevent mobile overrides */
+
 /* Results Actions */
 .results-actions {
     display: flex;
