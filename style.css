@@ -602,17 +602,21 @@ body::before {
         display: none !important;
     }
 
-    /* Replace Ketupats with lighter decorations */
+    /* Replace Ketupat characters with real SVG ornaments (positioned below header) */
     .corner-decor::before {
-        position: absolute;
-        top: 15px;
-        font-size: 2rem; /* Larger as requested */
-        opacity: 0.9;   /* More visible */
-        z-index: 1;
+        display: none !important;
     }
 
-    .corner-top-left::before { left: 15px; content: '🌙'; }
-    .corner-top-right::before { right: 15px; content: '✨'; }
+    .mobile-ornament {
+        position: absolute;
+        top: 75px; /* CLEARANCE FOR NAV BAR */
+        z-index: 10;
+        opacity: 0.9;
+        pointer-events: none;
+    }
+
+    .moon-mobile { left: 15px; }
+    .star-mobile { right: 15px; }
 
     /* Hero Section Spacing & Hierarchy */
     .hero-section {
@@ -678,22 +682,23 @@ body::before {
         padding-bottom: 3rem; 
     }
 
-    /* Notification (Winner Popup) - Centered & Correct Spacing */
+    /* Notification (Winner Popup) - Fixed at the TOP */
     .raya-notification {
-        top: 0;
+        position: fixed !important;
+        top: 10px !important;
         left: 50% !important;
-        position: relative !important;
         transform: translateX(-50%) !important;
-        margin: 10px auto 38px auto !important; /* ~1cm bottom gap */
+        margin: 0 !important;
         padding: 6px 14px !important;
         font-size: 13px !important;
         border-radius: 20px !important;
         opacity: 1 !important;
         visibility: visible !important;
-        z-index: 100 !important;
+        z-index: 2000 !important; /* ABOVE EVERYTHING */
         width: fit-content !important;
-        justify-content: center !important;
-        box-shadow: 0 4px 12px rgba(6, 78, 59, 0.08) !important;
+        box-shadow: 0 4px 15px rgba(6, 78, 59, 0.15) !important;
+        background: #ffffff;
+        border: 1px solid rgba(5, 150, 105, 0.2);
     }
     
     .raya-notification.show {
@@ -701,48 +706,65 @@ body::before {
         opacity: 1 !important;
     }
 
-    /* Form Card Refinement */
+    /* Form Card Refinement - Tight & Balanced */
     .generation-card {
-        padding: 20px;
+        padding: 24px 20px; /* Consistent side padding */
         border-radius: 20px;
         margin-top: 1rem;
+    }
+
+    .input-group {
+        width: 100%;
+    }
+
+    .input-label {
+        display: block;
+        padding-left: 0;
+        margin-left: 0;
+        margin-bottom: 8px;
+        text-align: left; /* Align P with the left edge */
+        width: 100%;
     }
 
     .input-row {
         flex-direction: column;
         align-items: stretch;
-        gap: 8px; /* Reduced gap */
+        gap: 12px; /* Tight vertical flow */
     }
 
     .input-field {
         border-radius: 12px;
         border-right: 2px solid rgba(11, 74, 43, 0.1);
-        text-align: center; 
-        padding: 0.8rem;
+        text-align: left; /* Reset to left for better P alignment */
+        padding: 0 1rem;
+        height: 48px;
+        width: 100%;
     }
     
     #scan-btn {
         border-radius: 12px;
         width: 100%;
-        height: 48px; /* Smaller button */
+        height: 52px; /* PRIMARY - Bolder & Taller */
         padding: 0.5rem 1rem;
-        font-size: 0.95rem;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 4px;
     }
     
     .secondary-actions {
         flex-direction: column;
-        gap: 8px; /* Tighter gap */
-        margin-top: 8px;
-    }
-
-    .btn {
-        margin-top: 0px; /* Reset previous margin */
+        gap: 0;
+        margin-top: 8px; /* Tighter gap between buttons (approx 10-12px with adjacent margins) */
     }
 
     .btn-secondary {
-        padding: 0.7rem 1.2rem;
-        font-size: 0.85rem;
+        height: 44px; /* SECONDARY - Scaled down */
+        padding: 10px 16px;
+        font-size: 14px;
+        width: 100%;
+        margin-top: 4px;
     }
+
 
     /* Mascot - Decorative Peeking (Minimal) */
     .mascot-side-container {
