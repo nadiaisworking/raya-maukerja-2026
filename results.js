@@ -14,15 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let roles = [];
     if (profileUrl.toLowerCase().includes('engineer') || profileUrl.toLowerCase().includes('it')) {
         roles = [
-            { rank: "🥇", title: "Betulkan Wifi Rumah", desc: "Anda jadi hero tech keluarga bila internet 'selow' pagi Raya ni! 📶", icon: "⚡" },
-            { rank: "🥈", title: "Set-up TV Pintar Tokwan", desc: "Tolong Tokwan buka YouTube cari lagu Raya lama-lama. 📺", icon: "👴" },
-            { rank: "🥉", title: "Mangsa Soalan 'Kenapa Phone Mak Lambat?'", desc: "Sabar jelah delete cache beribu gambar WhatsApp mak. 📱", icon: "🫠" }
+            { title: "Betulkan Wifi Rumah", desc: "Anda jadi hero tech keluarga bila internet 'selow' pagi Raya ni! 📶", icon: "⚡" },
+            { title: "Set-up TV Pintar Tokwan", desc: "Tolong Tokwan buka YouTube cari lagu Raya lama-lama. 📺", icon: "👴" },
+            { title: "Mangsa Soalan 'Kenapa Phone Mak Lambat?'", desc: "Sabar jelah delete cache beribu gambar WhatsApp mak. 📱", icon: "🫠" }
         ];
     } else {
         roles = [
-            { rank: "🥇", title: "Bakar Lemang Tengah Malam", desc: "Anda jadi hero dapur raya yang gigih jaga api malam ni! 🔥", icon: "🪵" },
-            { rank: "🥈", title: "Tukang Beli Ais Batu", desc: "Bila air balang tak sejuk, anda lah yang kena rempit ke kedai. 🧊", icon: "🏍️" },
-            { rank: "🥉", title: "Jaga Kucing Time Orang Beraya", desc: "Tugas paling mencabar: pastikan Oyen tak lari keluar rumah. 🐈", icon: "🐾" }
+            { title: "Bakar Lemang Tengah Malam", desc: "Anda jadi hero dapur raya yang gigih jaga api malam ni! 🔥", icon: "🪵" },
+            { title: "Tukang Beli Ais Batu", desc: "Bila air balang tak sejuk, anda lah yang kena rempit ke kedai. 🧊", icon: "🏍️" },
+            { title: "Jaga Kucing Time Orang Beraya", desc: "Tugas paling mencabar: pastikan Oyen tak lari keluar rumah. 🐈", icon: "🐾" }
         ];
     }
 
@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'role-card-festive';
             card.style.animationDelay = `${index * 0.3}s`;
             card.innerHTML = `
-                <div class="role-rank">${role.rank}</div>
                 <div class="role-body">
                     <h3 class="role-title-new">${role.title} ${role.icon}</h3>
                     <p class="role-desc-new">${role.desc}</p>
