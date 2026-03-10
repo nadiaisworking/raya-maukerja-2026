@@ -145,7 +145,7 @@ body::before {
 .main-container {
     max-width: 600px;
     margin: 4rem auto;
-    padding: 0 1.5rem 8rem 1.5rem;
+    padding: 0 1.5rem 2rem 1.5rem;
     position: relative;
     z-index: 10;
 }
@@ -291,7 +291,7 @@ body::before {
 .main-container {
     max-width: 600px;
     margin: 5.5rem auto 2rem auto; /* Adjusted for better balance */
-    padding: 0 1.5rem 8rem 1.5rem;
+    padding: 0 1.5rem 2rem 1.5rem;
     position: relative;
     z-index: 10;
 }
