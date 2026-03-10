@@ -426,14 +426,14 @@ body::before {
 }
 
 .spinner-logo {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
+    width: 120px; /* Slightly larger for better impact */
+    height: 120px;
+    object-fit: cover; /* Ensures the image fills the circle without stretching */
     border-radius: 50%;
-    background: white; /* Adding a background just in case there's transparency issues making it look non-circular */
-    padding: 10px;    /* Giving it some breathing room inside the circle */
     box-shadow: 0 10px 25px rgba(5, 150, 105, 0.15);
     animation: pulse 1s infinite alternate;
+    display: block;
+    margin: 0 auto;
 }
 
 @keyframes pulse {
