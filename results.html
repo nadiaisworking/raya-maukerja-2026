@@ -6,6 +6,7 @@
     <title>Peranan Raya Anda - Maukerja</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="raya-curtains"></div>
@@ -80,6 +81,12 @@
             
             <div class="roles-grid" id="roles-container">
                  <!-- Roles will be injected here via JS -->
+            </div>
+
+            <div class="screenshot-action-wrapper" id="screenshot-btn-container">
+                <button id="download-result-btn" class="btn btn-screenshot">
+                    📸 Simpan Keputusan Raya Saya
+                </button>
             </div>
 
             <!-- Reward Section -->
@@ -172,6 +179,28 @@
                 <path d="M30 5 C35 15 35 30 30 35 C25 30 25 15 30 5" fill="#fbbf24" stroke="#d97706" stroke-width="1" />
             </g>
         </svg>
+    </div>
+
+    <!-- Hidden Template for Screenshot Export (1080x1920) -->
+    <div id="screenshot-template" class="screenshot-export-container">
+        <div class="export-header">
+            <img src="assets/MK Logo Panjang.png" alt="Maukerja Logo" class="export-logo">
+            <h1 class="export-title">Peranan Raya Saya Tahun Ini</h1>
+        </div>
+        
+        <div class="export-roles" id="export-roles-list">
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="export-decorations">
+            <div class="export-ketupat left">✨</div>
+            <div class="export-ketupat right">✨</div>
+            <div class="export-moon">🌙</div>
+        </div>
+        
+        <div class="export-footer">
+            <p>Jom cari Peranan Raya anda di: <strong>raya-maukerja-2026.vercel.app</strong></p>
+        </div>
     </div>
 
     <script src="results.js"></script>
