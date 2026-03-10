@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // 2. Capture and Download
                 screenshotTemplate.style.display = 'flex';
+                screenshotTemplate.style.visibility = 'visible';
                 
                 const canvas = await html2canvas(screenshotTemplate, {
                     useCORS: true,
@@ -129,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 screenshotTemplate.style.display = 'none';
+                screenshotTemplate.style.visibility = 'hidden';
 
                 const link = document.createElement('a');
                 link.download = 'Keputusan_Raya_Maukerja.png';
