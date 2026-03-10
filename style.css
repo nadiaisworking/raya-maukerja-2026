@@ -21,7 +21,6 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-light);
     color: var(--text-primary);
-    min-height: 100vh;
     overflow-x: hidden;
     position: relative;
     background-image: radial-gradient(circle at top right, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
@@ -783,6 +782,7 @@ body::before {
 
 /* Screenshot Export Template (Instagram Story Size: 1080x1920) */
 .screenshot-export-container {
+    display: none; /* Only show via JS during capture */
     position: absolute;
     left: -9999px;
     top: 0;

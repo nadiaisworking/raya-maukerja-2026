@@ -116,11 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // 2. Capture and Download
+                screenshotTemplate.style.display = 'flex';
+                
                 const canvas = await html2canvas(screenshotTemplate, {
                     useCORS: true,
                     scale: 2, // Higher quality
                     backgroundColor: null
                 });
+
+                screenshotTemplate.style.display = 'none';
 
                 const link = document.createElement('a');
                 link.download = 'Keputusan_Raya_Maukerja.png';
