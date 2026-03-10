@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const claimForm = document.getElementById('claim-form');
     const prizeRevealView = document.getElementById('prize-reveal-view');
     const claimSuccessView = document.getElementById('claim-success-view');
+    const downloadResultBtn = document.getElementById('download-result-btn');
+    const exportRolesList = document.getElementById('export-roles-list');
+    const screenshotTemplate = document.getElementById('screenshot-template');
 
     const urlParams = new URLSearchParams(window.location.search);
     const profileUrl = urlParams.get('url') || '';
@@ -93,7 +96,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Form Handling
+    // 3. Screenshot/Download Logic
+    if (downloadResultBtn) {
+        downloadResultBtn.addEventListener('click', async () => {
+            // Update UI to show progress
+            const originalText = downloadResultBtn.innerHTML;
+            downloadResultBtn.disabled = true;
+            downloadResultBtn.innerHTML = 'Generating Image... ⌛';
+
+            try {
+                // 1. Populate Export Template
+                if (exportRolesList) {
+                    exportRolesList.innerHTML = roles.map(role => `
+                        <div class="export-role-card">
+                            <h3 class="export-role-title">${role.title} ${role.icon}</h3>
+                            <p class="export-role-desc">${role.desc}</p>
+                        </div>
+                    `).join('');
+                }
+
+                // 2. Capture and Download
+                const canvas = await html2canvas(screenshotTemplate, {
+                    useCORS: true,
+                    scale: 2, // Higher quality
+                    backgroundColor: null
+                });
+
+                const link = document.createElement('a');
+                link.download = 'Keputusan_Raya_Maukerja.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+            } catch (err) {
+                console.error('Screenshot failed:', err);
+                alert('Maaf, ada masalah teknikal semasa menyimpan gambar. Sila cuba lagi!');
+            } finally {
+                downloadResultBtn.disabled = false;
+                downloadResultBtn.innerHTML = originalText;
+            }
+        });
+    }
+
+    // 4. Form Handling
     if (claimForm) {
         claimForm.addEventListener('submit', (e) => {
             e.preventDefault();
