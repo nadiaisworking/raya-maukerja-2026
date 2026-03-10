@@ -96,13 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Screenshot/Download Logic
+    // 3. Screenshot/Download/Share Logic
     if (downloadResultBtn) {
         downloadResultBtn.addEventListener('click', async () => {
             // Update UI to show progress
             const originalText = downloadResultBtn.innerHTML;
             downloadResultBtn.disabled = true;
-            downloadResultBtn.innerHTML = 'Generating Image... ⌛';
+            downloadResultBtn.innerHTML = '🕒 Generating...';
 
             try {
                 // 1. Populate Export Template
@@ -119,32 +119,58 @@ document.addEventListener('DOMContentLoaded', () => {
                     `).join('');
                 }
 
-                // 2. Capture and Download
+                // 2. Capture Canvas
                 screenshotTemplate.style.display = 'flex';
                 screenshotTemplate.style.visibility = 'visible';
                 
                 const canvas = await html2canvas(screenshotTemplate, {
                     useCORS: true,
-                    scale: 2, // Higher quality
+                    scale: 2,
                     backgroundColor: null
                 });
 
                 screenshotTemplate.style.display = 'none';
                 screenshotTemplate.style.visibility = 'hidden';
 
-                const link = document.createElement('a');
-                link.download = 'Keputusan_Raya_Maukerja.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
+                // 3. Share or Download
+                const dataUrl = canvas.toDataURL('image/png');
+                const blob = await (await fetch(dataUrl)).blob();
+                const file = new File([blob], 'Peranan_Raya_Maukerja.png', { type: 'image/png' });
+
+                // Check if Web Share API supports file sharing
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    try {
+                        await navigator.share({
+                            files: [file],
+                            title: 'Peranan Raya Saya 🌙',
+                            text: 'Tengok peranan Raya saya tahun ni! Cuba korang punya kat: raya-maukerja-2026.vercel.app'
+                        });
+                    } catch (shareErr) {
+                        // Fallback to download if user cancels or share fails
+                        if (shareErr.name !== 'AbortError') {
+                            triggerDownload(dataUrl);
+                        }
+                    }
+                } else {
+                    // Fallback for Desktop
+                    triggerDownload(dataUrl);
+                }
                 
             } catch (err) {
-                console.error('Screenshot failed:', err);
-                alert('Maaf, ada masalah teknikal semasa menyimpan gambar. Sila cuba lagi!');
+                console.error('Action failed:', err);
+                alert('Maaf, ada masalah teknikal. Sila cuba lagi!');
             } finally {
                 downloadResultBtn.disabled = false;
                 downloadResultBtn.innerHTML = originalText;
             }
         });
+    }
+
+    function triggerDownload(dataUrl) {
+        const link = document.createElement('a');
+        link.download = 'Peranan_Raya_Maukerja.png';
+        link.href = dataUrl;
+        link.click();
     }
 
     // 4. Form Handling
