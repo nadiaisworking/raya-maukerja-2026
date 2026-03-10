@@ -151,7 +151,7 @@ body::before {
 .main-container {
     max-width: 600px;
     margin: 4rem auto 0 auto;
-    padding: 0 1.5rem 0 1.5rem;
+    padding: 0 1.5rem 2.5rem 1.5rem;
     position: relative;
     z-index: 10;
 }
@@ -322,7 +322,7 @@ body::before {
 .main-container {
     max-width: 600px;
     margin: 5.5rem auto 0 auto; 
-    padding: 0 1.5rem 0 1.5rem;
+    padding: 0 1.5rem 2.5rem 1.5rem;
     position: relative;
     z-index: 10;
 }
@@ -396,7 +396,7 @@ body::before {
 
 .secondary-actions {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     justify-content: center;
 }
 
@@ -431,8 +431,8 @@ body::before {
     color: var(--raya-green-dark);
     border: 2px solid var(--raya-green);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    padding: 0.8rem 1.2rem;
-    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
     width: auto;
 }
 
