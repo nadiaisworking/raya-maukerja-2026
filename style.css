@@ -48,11 +48,11 @@ body::before {
 /* Background Ornaments */
 .Raya-ornaments {
     position: fixed;
-    top: 59px; /* HANG FROM BOTTOM OF HEADER (APPROX HEIGHT) */
+    top: 81px; /* EXACTLY HANG FROM DESKTOP NAVBAR BOTTOM */
     left: 0; 
     width: 100%;
     pointer-events: none;
-    z-index: 2005; /* ON TOP OF HEADER (Z-INDEX 100) AND NOTIFICATION (Z-INDEX 2000) */
+    z-index: 2005; 
 }
 
 .star {
@@ -677,8 +677,12 @@ body::before {
     }
 
     .main-container {
-        margin-top: 130px; /* CLEAR HANGING ORNAMENTS ON MOBILE */
+        margin-top: 90px; /* REDUCED GAP FOR TIGHTER MOBILE LAYOUT */
         padding-bottom: 3rem; 
+    }
+
+    .Raya-ornaments {
+        top: 59px !important; /* EXACTLY HANG FROM MOBILE NAVBAR BOTTOM */
     }
 
     /* Notification (Winner Popup) - Positioned at the top of content */
