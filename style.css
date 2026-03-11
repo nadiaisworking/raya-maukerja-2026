@@ -639,14 +639,18 @@ body::before {
         text-align: center;
         padding: 0 15px;
         font-size: 0.95rem;
-        margin-bottom: 15px; /* NORMAL GAP - tight and balanced */
+        margin-bottom: 8px; /* TIGHT GAP - as requested */
         z-index: 50;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .hero-promo {
         text-align: center;
         font-size: 1rem;
         z-index: 50;
+        margin-top: 0;
     }
 
     /* Header adjustments - Improved Spacing */
@@ -756,15 +760,16 @@ body::before {
     
     .secondary-actions {
         flex-direction: column;
+        align-items: center;
         gap: 0;
         margin-top: 8px; /* Tighter gap between buttons (approx 10-12px with adjacent margins) */
     }
 
     .btn-secondary {
         height: 44px; /* SECONDARY - Scaled down */
-        padding: 10px 16px;
+        padding: 10px 24px;
         font-size: 14px;
-        width: 100%;
+        width: fit-content;
         margin-top: 4px;
     }
 
@@ -1148,7 +1153,7 @@ body::before {
     width: 100%;
 }
 
-#reset-btn, .btn-secondary {
+#reset-btn {
     width: 100%;
 }
 
