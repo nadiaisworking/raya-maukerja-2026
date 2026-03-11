@@ -90,4 +90,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start the notification loop immediately
     setTimeout(showRayaNotification, 100);
+
+    // Background Music Logic
+    const bgMusic = document.getElementById('bg-music');
+    const muteToggle = document.getElementById('mute-toggle');
+    const muteIcon = muteToggle ? muteToggle.querySelector('.mute-icon') : null;
+
+    if (bgMusic && muteToggle) {
+        // Load initial mute state
+        const isMuted = localStorage.getItem('raya-music-muted') === 'true';
+        bgMusic.muted = isMuted;
+        if (muteIcon) muteIcon.textContent = isMuted ? '' : '🔊';
+
+        // Attempt to play music immediately
+        const startMusic = () => {
+            bgMusic.play().then(() => {
+                // Success! remove the interaction listeners
+                document.removeEventListener('click', startMusic);
+                document.removeEventListener('touchstart', startMusic);
+            }).catch(error => {
+                console.log("Autoplay prevented. Waiting for user interaction.");
+            });
+        };
+
+        // Browser autoplay bypass: try playing on first click/touch
+        document.addEventListener('click', startMusic);
+        document.addEventListener('touchstart', startMusic);
+        
+        // Initial attempt
+        startMusic();
+
+        muteToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent startMusic from firing if it's the first click
+            const newMutedState = !bgMusic.muted;
+            bgMusic.muted = newMutedState;
+            localStorage.setItem('raya-music-muted', newMutedState);
+            if (muteIcon) muteIcon.textContent = newMutedState ? '🔇' : '🔊';
+            
+            // If we're unmuting and it's not playing, try to play
+            if (!newMutedState && bgMusic.paused) {
+                bgMusic.play();
+            }
+        });
+    }
 });

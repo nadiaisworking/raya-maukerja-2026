@@ -1493,3 +1493,45 @@ body::before {
 
 .mt-4 { margin-top: 1.5rem; }
 .w-full { width: 100%; }
+
+/* Mute Toggle Button */
+.mute-btn {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(5, 150, 105, 0.2);
+    color: var(--raya-green-dark);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mute-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    background: #ffffff;
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.2);
+}
+
+.mute-btn:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+    .mute-btn {
+        bottom: 20px;
+        left: 20px;
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+    }
+}
