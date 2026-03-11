@@ -614,6 +614,13 @@ body::before {
         display: none !important;
     }
 
+    .corner-decor {
+        width: 50px !important;
+    }
+
+    .corner-top-left { left: 10px !important; }
+    .corner-top-right { right: 10px !important; }
+
     /* Hero Section Spacing & Hierarchy */
     .hero-section {
         padding-top: 20px;
