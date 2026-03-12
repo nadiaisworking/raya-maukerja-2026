@@ -22,35 +22,35 @@ async function shareTo(platform) {
         return;
     }
 
+    const btn = event.target.closest('.btn-post');
+    const originalText = btn.innerText;
+    btn.innerText = 'Copying...';
+    btn.disabled = true;
+
     try {
-        // 1. Convert Data URL to File
+        // 1. Convert Data URL to Blob
         const response = await fetch(imageData);
         const blob = await response.blob();
-        const file = new File([blob], 'Peranan_Raya_Maukerja.png', { type: 'image/png' });
 
-        // 2. Try Web Share API (Best for Mobile)
-        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({
-                files: [file],
-                title: 'Peranan Raya Saya ✨',
-                text: 'Cuba tengok peranan raya saya tahun ini! 🧧 #MaukerjaRaya',
-            });
-            return; // Success, sharing complete
+        // 2. Copy to Clipboard (The "Magic" Step)
+        if (navigator.clipboard && navigator.clipboard.write) {
+            const data = [new ClipboardItem({ [blob.type]: blob })];
+            await navigator.clipboard.write(data);
+            
+            // Show Feedback
+            showToast('Imej disalin! Sekarang pilih Instagram & "Paste" ✨');
+        } else {
+            // Fallback for browsers without clipboard support
+            const link = document.createElement('a');
+            link.download = 'Peranan_Raya_Maukerja.png';
+            link.href = imageData;
+            link.click();
         }
 
-        // 3. Fallback for Desktop/Unsupported Browsers (Download + Redirect)
-        const link = document.createElement('a');
-        link.download = 'Peranan_Raya_Maukerja.png';
-        link.href = imageData;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Give a small delay before redirecting to Instagram
+        // 3. Immediate Redirect to Instagram
         setTimeout(() => {
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             if (isMobile) {
-                // Instagram deep links
                 if (platform === 'story') {
                     window.location.href = 'instagram://story-camera';
                 } else {
@@ -59,10 +59,24 @@ async function shareTo(platform) {
             } else {
                 window.open('https://www.instagram.com/', '_blank');
             }
-        }, 1000);
+        }, 1500);
 
     } catch (err) {
         console.error('Sharing failed:', err);
-        alert('Maaf, ada masalah teknikal semasa perkongsian.');
+        showToast('Gagal menyalin imej. Sila cuba lagi.');
+    } finally {
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }, 2000);
     }
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 4000);
 }

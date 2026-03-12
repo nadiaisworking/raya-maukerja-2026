@@ -172,6 +172,27 @@
             transform: scale(0.95);
         }
 
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0, 149, 246, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
         .back-link {
             margin-top: auto;
             color: #888;
@@ -234,6 +255,8 @@
                 <button class="btn-post" onclick="shareTo('message')">Message</button>
             </div>
         </div>
+
+        <div id="toast" class="toast">Imej disalin! ✨</div>
 
         <a href="results.html" class="back-link">← Kembali ke keputusan</a>
     </div>
