@@ -8,7 +8,10 @@
     --primary-red-hover: #e62030;
     --raya-green: #059669;
     --raya-green-dark: #047857;
+    --raya-green-deep: #064e3b;
     --raya-gold: #d97706;
+    --raya-gold-bright: #fbbf24;
+    --raya-gold-deep: #d97706;
 }
 
 * {
@@ -338,10 +341,10 @@ body::before {
 }
 
 .generation-card {
-    background: #ffffff !important; /* Solid white to avoid blending */
-    border-radius: 32px;
+    background: #ffffff !important; 
+    border-radius: 36px; /* Sync with guide card */
     padding: 3rem 2.5rem;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(6, 78, 59, 0.05);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(6, 78, 59, 0.08);
     border: 1px solid rgba(5, 150, 105, 0.1);
     margin-top: 1.5rem;
     position: relative;
@@ -509,18 +512,39 @@ body::before {
 /* Visual-First Help Guide Card - Solid White */
 .premium-guide-card.visual-guide-card {
     background: #ffffff !important;
-    border-radius: 32px;
-    box-shadow: 0 35px 80px rgba(0, 78, 59, 0.15);
+    border-radius: 36px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 78, 59, 0.08);
     border: 1px solid rgba(5, 150, 105, 0.1);
+    overflow: hidden;
+}
+
+.visual-guide-card .guide-banner {
+    background-color: #064e3b !important;
+    background-image: url('assets/sampul_raya.png') !important;
+    background-size: cover;
+    background-position: center 25%;
+    padding: 3.5rem 2rem;
+    color: white;
+    text-align: center;
+    position: relative;
+    border-bottom: 4px solid var(--raya-gold-bright);
+}
+
+.guide-body {
+    padding: 3rem 2.5rem;
 }
 
 .guide-title {
     font-size: 2.4rem;
     font-weight: 900;
-    color: var(--raya-gold-bright);
-    text-shadow: 0 4px 10px rgba(0,0,0,1), 0 2px 4px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.5);
-    margin: 0;
+    color: var(--raya-gold-bright) !important;
+    text-shadow: 
+        0 4px 10px rgba(0,0,0,1),
+        0 2px 4px rgba(0,0,0,1),
+        0 0 20px rgba(0,0,0,0.5);
+    margin: 0 !important;
     letter-spacing: -0.5px;
+    line-height: 1.2;
 }
 
 .visual-steps-grid {
@@ -558,18 +582,49 @@ body::before {
     font-weight: 500;
 }
 
+/* Base Gold CTA Button */
+.btn-gold-cta {
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    color: white !important;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 800;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    box-shadow: 0 10px 30px rgba(217, 119, 6, 0.35);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 1.05rem;
+    border: none;
+}
+
+.btn-gold-cta:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 18px 40px rgba(217, 119, 6, 0.45);
+    filter: brightness(1.1);
+}
+
 .btn-gold-cta.large-cta {
     padding: 1.25rem 2.5rem;
     border-radius: 20px;
     font-size: 1.2rem;
     width: 100%;
     margin-top: 1rem;
+    justify-content: center;
 }
 
 /* Mockup Highlight & Animations */
 .guide-mockup-wrapper {
     position: relative;
-    margin-top: 3rem;
+    margin: 3rem auto 0 auto;
+    max-width: 480px; /* Aligned with design preview 6 reported width */
+}
+
+.guide-mockup-img {
+    width: 100% !important;
+    display: block !important;
+    height: auto !important;
 }
 
 .guide-mockup-frame {
