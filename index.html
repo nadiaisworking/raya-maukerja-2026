@@ -85,12 +85,15 @@
             <section class="hero-wrapper">
             <div class="hero-sparkle-wrapper">
                 <div class="hero-section text-center">
-                    <h1 class="hero-title">Apa Tugas Raya Anda Tahun Ini?</h1>
-            <p class="hero-subtitle">Kami akan bagi 3 tugas pagi raya untuk anda, ikut pengalaman kerja anda sekarang. <span style="white-space: nowrap;">Tengok kena tak! 👀</span></p>
-            <p class="hero-promo">Boleh dapat duit raya jugak! 💰🤝</p>
+                    <p class="hero-subtitle">Kami akan bagi 3 tugas pagi raya untuk anda, ikut pengalaman kerja anda sekarang. <span style="white-space: nowrap;">Tengok kena tak! 👀</span></p>
+                    <p class="hero-promo">Boleh dapat duit raya jugak! 💰🤝</p>
                     
-                    <!-- Generation Card - Now directly below text -->
+                    <!-- Generation Card - Now consolidated with title and instructions -->
                     <div class="card generation-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Apa Tugas Raya Anda?</h2>
+                            <p class="card-instruction">Sila masukkan link profile Maukerja anda.</p>
+                        </div>
                         <div class="input-row">
                             <div class="input-group">
                                 <label for="profile-url" class="input-label">Pautan Profil Maukerja</label>
@@ -100,13 +103,58 @@
                                 <span class="btn-text">Imbas Profil ✨</span>
                             </button>
                         </div>
+                        <p class="scroll-hint">Tak pasti? Lihat langkah di bawah 👇</p>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="secondary-actions">
-                            <a href="https://www.maukerja.my/settings" target="_blank" class="btn btn-secondary">
-                                Link Profile Saya
-                            </a>
+            <!-- Festive Divider -->
+            <!-- Festive Divider - SVG Ketupat -->
+            <div class="festive-divider">
+                <svg class="ketupat-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 5 L95 50 L50 95 L5 50 Z" fill="#059669" stroke="#fbbf24" stroke-width="4"/>
+                    <path d="M25 50 L50 25 L75 50 L50 75 Z" fill="#fbbf24" opacity="0.4"/>
+                    <rect x="47" y="90" width="6" height="15" fill="#059669"/>
+                </svg>
+            </div>
+
+            <!-- Visual-First Help Guide -->
+            <div class="premium-guide-container">
+                <div class="premium-guide-card visual-guide-card">
+                    <div class="guide-banner">
+                        <h2 class="guide-title">Cara Ambil Link</h2>
+                    </div>
+
+                    <div class="guide-body">
+                        <div class="visual-steps-grid">
+                            <div class="visual-tile">
+                                <span class="tile-icon">⚙️</span>
+                                <span class="tile-label">1. Buka Tetapan</span>
+                                <span class="tile-sub">Klik butang di bawah</span>
+                            </div>
+                            <div class="visual-tile">
+                                <span class="tile-icon">📋</span>
+                                <span class="tile-label">2. Salin Pautan</span>
+                                <span class="tile-sub">Lihat pada kotak merah</span>
+                            </div>
+                        </div>
+
+                        <a href="https://www.maukerja.my/settings" target="_blank" class="btn-gold-cta large-cta">
+                            ⚙️ Buka Profile Settings ➔
+                        </a>
+
+                        <div class="guide-mockup-wrapper">
+                            <div class="guide-mockup-frame">
+                                <img src="assets/Get your link.png" class="guide-mockup-img" alt="Tutorial visual">
+                                <!-- The pulsing highlight box -->
+                                <div class="link-highlight-box">
+                                    <span class="highlight-label">Lihat Pautan Di Sini 🔥</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>        </div>
                 </div>
             </div>
 
