@@ -24,51 +24,40 @@ async function shareTo(platform) {
 
     const btn = event.target.closest('.btn-post');
     const originalText = btn.innerText;
-    btn.innerText = 'Copying...';
+    btn.innerText = 'Sharing...';
     btn.disabled = true;
 
     try {
         // 1. Convert Data URL to Blob
         const response = await fetch(imageData);
         const blob = await response.blob();
+        const file = new File([blob], 'Peranan_Raya_Maukerja.png', { type: 'image/png' });
 
-        // 2. Copy to Clipboard (The "Magic" Step)
-        if (navigator.clipboard && navigator.clipboard.write) {
-            const data = [new ClipboardItem({ [blob.type]: blob })];
-            await navigator.clipboard.write(data);
-            
-            // Show Feedback
-            showToast('Imej disalin! Sekarang pilih Instagram & "Paste" ✨');
+        // 2. Direct Share (Best for Mobile)
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+                files: [file],
+                title: 'Peranan Raya Saya ✨'
+            });
+            // On successful share, user is already in the share sheet or redirected
         } else {
-            // Fallback for browsers without clipboard support
+            // Fallback for Desktop/Unsupported (Download + Link)
             const link = document.createElement('a');
             link.download = 'Peranan_Raya_Maukerja.png';
             link.href = imageData;
             link.click();
-        }
-
-        // 3. Immediate Redirect to Instagram
-        setTimeout(() => {
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            if (isMobile) {
-                if (platform === 'story') {
-                    window.location.href = 'instagram://story-camera';
-                } else {
-                    window.location.href = 'instagram://camera';
-                }
-            } else {
+            
+            setTimeout(() => {
                 window.open('https://www.instagram.com/', '_blank');
-            }
-        }, 1500);
+            }, 1000);
+        }
 
     } catch (err) {
         console.error('Sharing failed:', err);
-        showToast('Gagal menyalin imej. Sila cuba lagi.');
+        // User might have cancelled the share sheet, which is fine
     } finally {
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.disabled = false;
-        }, 2000);
+        btn.innerText = originalText;
+        btn.disabled = false;
     }
 }
 
