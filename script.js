@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (loadingState) loadingState.classList.remove('hidden');
 
             // 3. Fake AI Scan Delay
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(resolve => setTimeout(resolve, 4000));
             
             // 4. Redirect to Results Page
             window.location.href = `results.html?url=${encodeURIComponent(url)}`;
