@@ -168,17 +168,24 @@ body::before {
     padding-top: 2rem;
 }
 
+@keyframes titleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
 .hero-title {
-    font-size: 3.5rem; /* Larger font for main header */
+    font-size: 2.8rem; /* Adjusted font size for main header to prevent unwanted wrapping */
     font-weight: 900;
     margin-bottom: 1rem;
-    letter-spacing: -2px;
+    letter-spacing: -1.5px;
     line-height: 1.1;
     color: var(--raya-green-deep);
     position: relative;
     display: inline-block;
     z-index: 2;
     text-shadow: 0 2px 10px rgba(6, 78, 59, 0.1);
+    animation: titleFloat 3s ease-in-out infinite;
+    max-width: 100%;
 }
 
 .input-sub-instruction {
@@ -869,7 +876,7 @@ body::before {
         padding: 0 10px;
         line-height: 1.25;
         z-index: 50;
-        max-width: 280px; /* Force into two lines */
+        max-width: 100%; /* Allow full width to prevent unwanted word wrap */
         margin-left: auto;
         margin-right: auto;
     }
