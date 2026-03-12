@@ -14,6 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Validate URL format
+            if (!url.startsWith('https://www.maukerja.my/public/')) {
+                alert('Pautan profil tidak sah. Pastikan ia bermula dengan "https://www.maukerja.my/public/". Sila rujuk panduan "Cara Ambil Link" di bawah.');
+                const guideSection = document.getElementById('cara-ambil-link');
+                if (guideSection) {
+                    guideSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                return;
+            }
+
             // 1. Hide Landing Content
             if (landingState) landingState.classList.add('hidden');
             
