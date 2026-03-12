@@ -122,15 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const blob = await (await fetch(dataUrl)).blob();
                 const file = new File([blob], 'Peranan_Raya_Maukerja.png', { type: 'image/png' });
 
-                // 2. Trigger Download & Redirect to Instagram
-                triggerDownload(dataUrl);
+                // 2. Store Screenshot Data & Redirect to Share Screen
+                localStorage.setItem('raya_result_screenshot', dataUrl);
+                window.location.href = 'share.html';
                 
-                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-                if (isMobile) {
-                    window.location.href = 'instagram://camera';
-                } else {
-                    window.open('https://www.instagram.com/', '_blank');
-                }
+                return; // Stop execution here as we are redirecting
                 
                 let shareSuccess = true;
 
