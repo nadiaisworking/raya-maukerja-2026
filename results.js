@@ -122,28 +122,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const blob = await (await fetch(dataUrl)).blob();
                 const file = new File([blob], 'Peranan_Raya_Maukerja.png', { type: 'image/png' });
 
-                // 2. Trigger Share
-                let shareSuccess = false;
-                if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    try {
-                        await navigator.share({
-                            files: [file],
-                            title: 'Peranan Raya Saya 🌙',
-                            text: 'Tengok peranan Raya saya tahun ni! Cuba korang punya kat: raya-maukerja-2026.vercel.app'
-                        });
-                        shareSuccess = true;
-                    } catch (shareErr) {
-                        if (shareErr.name === 'AbortError') {
-                             shareSuccess = true;
-                        } else {
-                            triggerDownload(dataUrl);
-                            shareSuccess = true;
-                        }
-                    }
+                // 2. Trigger Download & Redirect to Instagram
+                triggerDownload(dataUrl);
+                
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                if (isMobile) {
+                    window.location.href = 'instagram://camera';
                 } else {
-                    triggerDownload(dataUrl);
-                    shareSuccess = true;
+                    window.open('https://www.instagram.com/', '_blank');
                 }
+                
+                let shareSuccess = true;
 
                 // 3. Reveal Prize
                 if (shareSuccess) {
