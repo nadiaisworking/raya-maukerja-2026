@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maukerja Raya - Game Peranan AI</title>
+    <title>Maukerja Raya - Tulis Kad Raya</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -78,120 +80,126 @@
 
     <!-- Main Content -->
     <main class="main-container">
-        
+
         <!-- Landing State (Initial View) -->
         <div id="landing-state">
             <!-- Welcome Section -->
             <section class="hero-wrapper">
-            <div class="hero-sparkle-wrapper">
-                <div class="hero-section text-center">
-                    <h1 class="hero-title">Apa Tugas Raya Anda<br>Tahun Ini 🕌</h1>
-                    <p class="input-sub-instruction">Guna profile Maukerja untuk check<br>tugas raya &amp; claim duit raya anda!</p>
-                    
-                    <!-- Generation Card -->
-                    <div class="card generation-card">
-                        <div class="input-row">
-                            <div class="input-group">
-                                <label for="profile-url" class="input-label">Paste Link Profile Maukerja</label>
-                                <input type="url" id="profile-url" class="input-field" placeholder="https://www.maukerja.my/profile/nadia123" required>
+                <div class="hero-sparkle-wrapper">
+                    <div class="hero-section text-center">
+                        <h1 class="hero-title">Tulis Kad Raya Anda<br>Tahun Ini 🕌</h1>
+                        <p class="input-sub-instruction">Guna profile Maukerja, tulis ucapan,<br> &amp; claim
+                            duit raya anda!</p>
+
+                        <!-- Generation Card -->
+                        <div class="card generation-card">
+                            <div class="input-column" style="display: flex; flex-direction: column; gap: 15px;">
+                                <div class="input-group">
+                                    <label for="profile-url" class="input-label">Paste Link Profile Maukerja</label>
+                                    <input type="url" id="profile-url" class="input-field"
+                                        placeholder="https://www.maukerja.my/profile/nadia123" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="ucapan-text" class="input-label">Tulis Ucapan Raya Anda</label>
+                                    <textarea id="ucapan-text" class="input-field" placeholder="Selamat Hari Raya! Maaf zahir dan batin daripada saya." style="resize: vertical; min-height: 80px; width: 100%; border-radius: var(--radius-md); border: 2px solid var(--border-color); padding: 12px 16px; font-family: 'Inter', sans-serif;" required></textarea>
+                                </div>
+                                <button type="button" id="scan-btn" class="btn btn-primary" style="width: 100%;">
+                                    <span class="btn-text">Jana Kad Raya ✨</span>
+                                </button>
                             </div>
-                            <button type="button" id="scan-btn" class="btn btn-primary">
-                                <span class="btn-text">Imbas Profil ✨</span>
-                            </button>
+                            <p class="scroll-hint">Tak pasti macam mana nak ambil link? Lihat langkah di bawah 👇</p>
                         </div>
-                        <p class="scroll-hint">Tak pasti? Lihat langkah di bawah 👇</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Festive Divider -->
-            <!-- Festive Divider - SVG Ketupat -->
-            <div class="festive-divider">
-                <svg class="ketupat-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 5 L95 50 L50 95 L5 50 Z" fill="#059669" stroke="#fbbf24" stroke-width="4"/>
-                    <path d="M25 50 L50 25 L75 50 L50 75 Z" fill="#fbbf24" opacity="0.4"/>
-                    <rect x="47" y="90" width="6" height="15" fill="#059669"/>
-                </svg>
-            </div>
+                <!-- Festive Divider -->
+                <!-- Festive Divider - SVG Ketupat -->
+                <div class="festive-divider">
+                    <svg class="ketupat-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 5 L95 50 L50 95 L5 50 Z" fill="#059669" stroke="#fbbf24" stroke-width="4" />
+                        <path d="M25 50 L50 25 L75 50 L50 75 Z" fill="#fbbf24" opacity="0.4" />
+                        <rect x="47" y="90" width="6" height="15" fill="#059669" />
+                    </svg>
+                </div>
 
-            <!-- Visual-First Help Guide -->
-            <div id="cara-ambil-link" class="premium-guide-container">
-                <div class="premium-guide-card visual-guide-card">
-                    <div class="guide-banner">
-                        <h2 class="guide-title">Cara Ambil Link</h2>
-                    </div>
-
-                    <div class="guide-body">
-                        <div class="visual-steps-grid">
-                            <div class="visual-tile">
-                                <span class="tile-icon">⚙️</span>
-                                <span class="tile-label">1. Buka Tetapan</span>
-                                <span class="tile-sub">Klik butang di bawah</span>
-                            </div>
-                            <div class="visual-tile">
-                                <span class="tile-icon">📋</span>
-                                <span class="tile-label">2. Salin Pautan</span>
-                                <span class="tile-sub">Lihat pada kotak merah</span>
-                            </div>
+                <!-- Visual-First Help Guide -->
+                <div id="cara-ambil-link" class="premium-guide-container">
+                    <div class="premium-guide-card visual-guide-card">
+                        <div class="guide-banner">
+                            <h2 class="guide-title">Cara Ambil Link</h2>
                         </div>
 
-                        <a href="https://www.maukerja.my/settings" target="_blank" class="btn-gold-cta large-cta">
-                            ⚙️ Buka Profile Settings ➔
-                        </a>
+                        <div class="guide-body">
+                            <div class="visual-steps-grid">
+                                <div class="visual-tile">
+                                    <span class="tile-icon">⚙️</span>
+                                    <span class="tile-label">1. Buka Tetapan</span>
+                                    <span class="tile-sub">Klik butang di bawah</span>
+                                </div>
+                                <div class="visual-tile">
+                                    <span class="tile-icon">📋</span>
+                                    <span class="tile-label">2. Salin Pautan</span>
+                                    <span class="tile-sub">Lihat pada kotak merah</span>
+                                </div>
+                            </div>
 
-                        <div class="guide-mockup-wrapper">
-                            <div class="guide-mockup-frame">
-                                <img src="assets/Get your link.png" class="guide-mockup-img" alt="Tutorial visual">
-                                <!-- The pulsing highlight box -->
-                                <div class="link-highlight-box">
-                                    <span class="highlight-label">Lihat Pautan Di Sini 🔥</span>
+                            <a href="https://www.maukerja.my/settings" target="_blank" class="btn-gold-cta large-cta">
+                                ⚙️ Buka Profile Settings ➔
+                            </a>
+
+                            <div class="guide-mockup-wrapper">
+                                <div class="guide-mockup-frame">
+                                    <img src="assets/Get your link.png" class="guide-mockup-img" alt="Tutorial visual">
+                                    <!-- The pulsing highlight box -->
+                                    <div class="link-highlight-box">
+                                        <span class="highlight-label">Lihat Pautan Di Sini 🔥</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Mascot Container - Now for side positioning -->
-            <div class="mascot-side-container">
-                <img src="assets/Naim Bye.png" alt="Naim Mascot Waving" class="hero-mascot">
-            </div>
-        </section>
-        
-        <!-- Popular Tasks Section -->
-        <div class="popular-tasks-section">
-            <h2 class="section-title">Tugas Raya Paling Popular Tahun Ni!</h2>
-            <div class="popular-tasks-grid">
-                <!-- Task 1: Photographer -->
-                <div class="popular-task-card">
-                    <div class="task-content">
-                        <h3 class="task-name">Tukang Ambil Gambar Raya 📸</h3>
-                        <p class="task-desc">Orang yang akan jadi photographer keluarga sepanjang hari.</p>
+                <!-- Mascot Container - Now for side positioning -->
+                <div class="mascot-side-container">
+                    <img src="assets/Naim Bye.png" alt="Naim Mascot Waving" class="hero-mascot">
+                </div>
+            </section>
+
+            <!-- Popular Tasks Section -->
+            <div class="popular-tasks-section" style="display: none;">
+                <h2 class="section-title">Tugas Raya Paling Popular Tahun Ni!</h2>
+                <div class="popular-tasks-grid">
+                    <!-- Task 1: Photographer -->
+                    <div class="popular-task-card">
+                        <div class="task-content">
+                            <h3 class="task-name">Tukang Ambil Gambar Raya 📸</h3>
+                            <p class="task-desc">Orang yang akan jadi photographer keluarga sepanjang hari.</p>
+                        </div>
+                        <div class="task-percentage">78%</div>
                     </div>
-                    <div class="task-percentage">78%</div>
+
+                    <!-- Task 2: Dishwasher -->
+                    <div class="popular-task-card">
+                        <div class="task-content">
+                            <h3 class="task-name">Tukang Basuh Pinggan 🍽</h3>
+                            <p class="task-desc">Lepas makan, mesti nama anda yang dipanggil.</p>
+                        </div>
+                        <div class="task-percentage">64%</div>
+                    </div>
+
+                    <!-- Task 3: Kuih Refiller -->
+                    <div class="popular-task-card">
+                        <div class="task-content">
+                            <h3 class="task-name">Tukang Isi Kuih Raya 🍪</h3>
+                            <p class="task-desc">Orang yang kena refill kuih setiap kali tetamu datang.</p>
+                        </div>
+                        <div class="task-percentage">52%</div>
+                    </div>
                 </div>
 
-                <!-- Task 2: Dishwasher -->
-                <div class="popular-task-card">
-                    <div class="task-content">
-                        <h3 class="task-name">Tukang Basuh Pinggan 🍽</h3>
-                        <p class="task-desc">Lepas makan, mesti nama anda yang dipanggil.</p>
-                    </div>
-                    <div class="task-percentage">64%</div>
-                </div>
-
-                <!-- Task 3: Kuih Refiller -->
-                <div class="popular-task-card">
-                    <div class="task-content">
-                        <h3 class="task-name">Tukang Isi Kuih Raya 🍪</h3>
-                        <p class="task-desc">Orang yang kena refill kuih setiap kali tetamu datang.</p>
-                    </div>
-                    <div class="task-percentage">52%</div>
-                </div>
+                <p class="popular-tasks-footer">Nak tahu apa tugas anda? Gunakan penjana di atas! 👆</p>
             </div>
-            
-            <p class="popular-tasks-footer">Nak tahu apa tugas anda? Gunakan penjana di atas! 👆</p>
-        </div>
         </div>
 
         <!-- Loading State -->
@@ -199,7 +207,7 @@
             <div class="loader">
                 <img src="assets/MK Logo Bulat.png" alt="Loading..." class="spinner-logo">
             </div>
-            <h3 class="loading-text">AI kami sedang mengimbas profil anda... <br> <span class="loading-subtext">Mencari tanggungjawab Raya yang paling sesuai untuk anda</span></h3>
+            <h3 class="loading-text">AI kami sedang menjana kad raya anda... <br> <span class="loading-subtext">Menyiapkan ucapan spesial anda</span></h3>
         </section>
     </main>
 
@@ -212,15 +220,15 @@
             <rect x="27" y="40" width="6" height="60" rx="3" fill="#047857" />
             <rect x="27" y="55" width="6" height="2" fill="#065f46" opacity="0.3" />
             <rect x="27" y="75" width="6" height="2" fill="#065f46" opacity="0.3" />
-            
+
             <!-- Pelita Body -->
             <path d="M15 40 L45 40 L50 65 L10 65 Z" fill="#059669" stroke="#d97706" stroke-width="1.5" />
             <rect x="18" y="43" width="24" height="4" fill="#d97706" opacity="0.2" />
             <circle cx="30" cy="52" r="6" fill="#fbbf24" opacity="0.1" />
-            
+
             <!-- Wick & Flame Holder -->
             <rect x="28" y="32" width="4" height="8" fill="#4b5563" />
-            
+
             <!-- Flame & Glow -->
             <g class="pelita-flame">
                 <!-- Large Glow -->
@@ -244,4 +252,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

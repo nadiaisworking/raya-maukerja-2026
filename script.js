@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (scanBtn) {
         scanBtn.addEventListener('click', async () => {
             const url = profileUrlInput.value.trim();
-            
+
             if (!url) {
                 alert('Sila masukkan pautan profil Maukerja anda terlebih dahulu!');
                 profileUrlInput.focus();
@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 1. Hide Landing Content
             if (landingState) landingState.classList.add('hidden');
-            
+
             // 2. Show Loading State
             if (loadingState) loadingState.classList.remove('hidden');
 
             // 3. Fake AI Scan Delay
             await new Promise(resolve => setTimeout(resolve, 4000));
-            
+
             // 4. Redirect to Results Page
             window.location.href = `results.html?url=${encodeURIComponent(url)}`;
         });
@@ -47,12 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const y = Math.random() * window.innerHeight;
             const tx = (Math.random() - 0.5) * 200;
             const ty = (Math.random() - 0.5) * 200;
-            
+
             sparkle.style.left = x + 'px';
             sparkle.style.top = y + 'px';
             sparkle.style.setProperty('--tx', tx + 'px');
             sparkle.style.setProperty('--ty', ty + 'px');
-            
+
             document.body.appendChild(sparkle);
             setTimeout(() => sparkle.remove(), 1500);
         }
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Duit Raya Notification Logic
     const malayNames = [
-        "Ahmad", "Siti", "Nurul", "Faiz", "Zul", "Nadia", "Irfan", "Farah", 
+        "Ahmad", "Siti", "Nurul", "Faiz", "Zul", "Nadia", "Irfan", "Farah",
         "Haziq", "Amira", "Syakir", "Aina", "Khairul", "Balqis", "Hafiz",
         "Zulaikha", "Firdaus", "Anis", "Ridwan", "Batrisyia"
     ];
@@ -73,11 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const name = malayNames[Math.floor(Math.random() * malayNames.length)];
         const amount = (Math.random() * (15 - 0.3) + 0.3).toFixed(2);
-        
+
         const notification = document.createElement('div');
         notification.className = 'raya-notification';
         notification.innerHTML = `💰 <span>${name}</span> dapat Duit Raya <strong>RM${amount}</strong>!`;
-        
+
         container.appendChild(notification);
 
         // Slide in
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Browser autoplay bypass: try playing on first click/touch
         document.addEventListener('click', startMusic);
         document.addEventListener('touchstart', startMusic);
-        
+
         // Initial attempt
         startMusic();
 
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bgMusic.muted = newMutedState;
             localStorage.setItem('raya-music-muted', newMutedState);
             if (muteIcon) muteIcon.textContent = newMutedState ? '🔇' : '🔊';
-            
+
             // If we're unmuting and it's not playing, try to play
             if (!newMutedState && bgMusic.paused) {
                 bgMusic.play();

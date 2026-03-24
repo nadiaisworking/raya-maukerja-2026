@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const imageData = localStorage.getItem('raya_result_screenshot');
     const images = document.querySelectorAll('.shared-image');
-    
+
     if (imageData) {
         images.forEach(img => {
             img.src = imageData;
@@ -46,7 +46,7 @@ async function shareTo(platform) {
             link.download = 'Peranan_Raya_Maukerja.png';
             link.href = imageData;
             link.click();
-            
+
             setTimeout(() => {
                 window.open('https://www.instagram.com/', '_blank');
             }, 1000);

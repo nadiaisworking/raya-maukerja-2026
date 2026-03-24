@@ -66,21 +66,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const blurredDisplay = document.getElementById('blurred-prize-display');
 
         envelopes.forEach(env => {
-            env.addEventListener('click', function() {
+            env.addEventListener('click', function () {
                 if (this.classList.contains('disabled')) return;
                 envelopes.forEach(e => e.classList.add('disabled'));
-                
+
                 this.classList.add('shaking');
-                
+
                 setTimeout(() => {
                     this.classList.remove('shaking');
                     this.classList.add('opening');
-                    
+
                     setTimeout(() => {
                         selectedPrize = getRandomPrize();
                         blurredDisplay.textContent = `RM${selectedPrize}`;
                         revealContainer.classList.remove('hidden');
-                        
+
                         // Scroll to reveal section
                         revealContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }, 600);
@@ -125,19 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 2. Store Screenshot Data & Redirect to Share Screen
                 localStorage.setItem('raya_result_screenshot', dataUrl);
                 window.location.href = 'share.html';
-                
+
                 return; // Stop execution here as we are redirecting
-                
+
                 let shareSuccess = true;
 
                 // 3. Reveal Prize
                 if (shareSuccess) {
                     const blurredDisplay = document.getElementById('blurred-prize-display');
                     const unlockHint = document.getElementById('unlock-hint');
-                    
+
                     blurredDisplay.classList.add('prize-amount-revealed');
                     unlockBtn.innerHTML = '💰 Claim Duit Raya Sekarang!';
-                    unlockBtn.classList.add('btn-whatsapp'); 
+                    unlockBtn.classList.add('btn-whatsapp');
                     unlockHint.innerHTML = `💰 Tahniah! Anda dapat <strong>RM${selectedPrize}</strong> Duit Raya!`;
 
                     unlockBtn.onclick = () => {
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         prizeModal.classList.remove('hidden');
                     };
                 }
-                
+
             } catch (err) {
                 console.error('Action failed:', err);
                 alert('Maaf, ada masalah teknikal. Sila cuba lagi!');
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (claimForm) {
         claimForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             // Simulation of submission
             const submitBtn = claimForm.querySelector('button');
             submitBtn.disabled = true;
