@@ -51,91 +51,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (envelopesContainer) {
         const envelopes = document.querySelectorAll('.envelope-item');
-        const revealContainer = document.getElementById('prize-reveal-container');
-        const blurredDisplay = document.getElementById('blurred-prize-display');
+        const shareModal = document.getElementById('share-modal');
+        const modalCancelBtn = document.getElementById('modal-cancel-btn');
+        const modalShareBtn = document.getElementById('modal-share-btn');
 
         envelopes.forEach(env => {
             env.addEventListener('click', function () {
                 if (this.classList.contains('disabled')) return;
-                envelopes.forEach(e => e.classList.add('disabled'));
-
-                this.classList.add('shaking');
-
-                setTimeout(() => {
-                    this.classList.remove('shaking');
-                    this.classList.add('opening');
-
-                    setTimeout(() => {
-                        selectedPrize = getRandomPrize();
-                        blurredDisplay.textContent = `RM${selectedPrize}`;
-                        revealContainer.classList.remove('hidden');
-
-                        // Scroll to reveal section
-                        revealContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 600);
-                }, 1000);
+                
+                // Show the required step modal instead of abruptly revealing
+                shareModal.classList.remove('hidden');
             });
         });
-    }
 
-    // 3. Screenshot/Share & Unlock Logic
-    const unlockBtn = document.getElementById('unlock-btn');
-    if (unlockBtn) {
-        unlockBtn.addEventListener('click', async () => {
-            const originalText = unlockBtn.innerHTML;
-            unlockBtn.disabled = true;
-            unlockBtn.innerHTML = '🕒 Generating...';
+        if (modalCancelBtn) {
+            modalCancelBtn.addEventListener('click', () => {
+                shareModal.classList.add('hidden');
+            });
+        }
 
-            try {
-                // 1. Generate Image
-                // Kad Raya data is already populated on DOMContentLoaded
+        if (modalShareBtn) {
+            modalShareBtn.addEventListener('click', async () => {
+                const originalText = modalShareBtn.innerHTML;
+                modalShareBtn.disabled = true;
+                modalShareBtn.innerHTML = '🕒 Generating...';
 
-                screenshotTemplate.style.display = 'flex';
-                screenshotTemplate.style.visibility = 'visible';
-                
-                // Allow layout to render before capture
-                await new Promise(resolve => setTimeout(resolve, 300));
+                try {
+                    // Generate Image using html2canvas
+                    screenshotTemplate.style.display = 'flex';
+                    screenshotTemplate.style.visibility = 'visible';
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                    const canvas = await html2canvas(screenshotTemplate, { useCORS: true, scale: 1.5 });
+                    screenshotTemplate.style.display = 'none';
+                    screenshotTemplate.style.visibility = 'hidden';
 
-                const canvas = await html2canvas(screenshotTemplate, { useCORS: true, scale: 1.5 });
-                screenshotTemplate.style.display = 'none';
-                screenshotTemplate.style.visibility = 'hidden';
-
-                const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
-
-                // 2. Store Screenshot Data & Redirect to Share Screen
-                localStorage.setItem('raya_result_screenshot', dataUrl);
-                window.location.href = 'share.html';
-
-                return; // Stop execution here as we are redirecting
-
-                let shareSuccess = true;
-
-                // 3. Reveal Prize
-                if (shareSuccess) {
-                    const blurredDisplay = document.getElementById('blurred-prize-display');
-                    const unlockHint = document.getElementById('unlock-hint');
-
-                    blurredDisplay.classList.add('prize-amount-revealed');
-                    unlockBtn.innerHTML = '💰 Claim Duit Raya Sekarang!';
-                    unlockBtn.classList.add('btn-whatsapp');
-                    unlockHint.innerHTML = `💰 Tahniah! Anda dapat <strong>RM${selectedPrize}</strong> Duit Raya!`;
-
-                    unlockBtn.onclick = () => {
-                        prizeAmountDisplay.textContent = `RM${selectedPrize}`;
-                        prizeModal.classList.remove('hidden');
-                    };
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                    
+                    // Store Screenshot Data & Redirect to Share Screen
+                    localStorage.setItem('raya_result_screenshot', dataUrl);
+                    window.location.href = 'share.html';
+                } catch (err) {
+                    console.error('Action failed:', err);
+                    alert('Maaf, ada masalah teknikal. Sila cuba lagi!');
+                } finally {
+                    modalShareBtn.disabled = false;
+                    modalShareBtn.innerHTML = originalText;
                 }
-
-            } catch (err) {
-                console.error('Action failed:', err);
-                alert('Maaf, ada masalah teknikal. Sila cuba lagi!');
-            } finally {
-                unlockBtn.disabled = false;
-                if (!unlockBtn.classList.contains('btn-whatsapp')) {
-                    unlockBtn.innerHTML = originalText;
-                }
-            }
-        });
+            });
+        }
     }
 
 

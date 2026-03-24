@@ -80,11 +80,15 @@
 
             <!-- Reward Section -->
             <div class="reward-section-wrapper" id="reward-section">
+                <!-- Contextual Bridging / Visual Continuity -->
+                <div class="success-banner" style="background: linear-gradient(135deg, #059669, #047857); color: white; padding: 0.8rem 1.5rem; border-radius: 12px; font-weight: bold; font-size: 0.95rem; margin-bottom: 2rem; display: inline-block; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.2);">
+                    ✨ Kad Raya anda berjaya dijana! ✨
+                </div>
+
                 <div class="reward-header">
                     <div class="social-proof-tag">🔥 124 orang dah buka sampul mereka hari ini</div>
                     <h2 class="reward-title">🎁 Buka Sampul Duit Raya Anda!</h2>
-                    <p class="reward-desc">Kami sediakan 3 sampul duit raya untuk anda. Pilih satu sampul untuk cuba
-                        nasib anda! 💫</p>
+                    <p class="reward-desc">Kad Raya anda dah siap! Pilih satu sampul, kongsi Kad Raya anda di media sosial, dan lihat berapa Duit Raya anda dapat!</p>
                 </div>
 
                 <div class="envelopes-grid" id="envelopes-container">
@@ -163,6 +167,42 @@
                 </a>
                 <a href="index.html" class="btn btn-link w-full mt-2">Main Lagi</a>
             </div>
+        </div>
+    </div>
+
+    <!-- Share/Lock Modal -->
+    <div id="share-modal" class="modal-overlay hidden">
+        <div class="modal-content card" style="max-width: 420px; padding: 2.5rem 2rem;">
+            <div class="modal-header" style="margin-bottom: 2rem;">
+                <h2 class="modal-title" style="font-size: 1.6rem; color: var(--raya-green-dark);">Sampul Terkunci 🔒</h2>
+                <p class="modal-subtext" style="font-size: 1rem; color: var(--text-secondary); margin-top: 0.5rem;">Satu langkah lagi! Kongsi Kad Raya anda untuk buka sampul ini.</p>
+            </div>
+            
+            <div class="modal-body" style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; margin-bottom: 2.5rem; background: #f8fafc; padding: 1.5rem; border-radius: 16px; border: 1px dashed var(--raya-green);">
+                <!-- Chosen Sampul Preview -->
+                <div class="sampul-preview" style="flex: 1; text-align: center;">
+                    <img src="assets/sampul_raya.png" alt="Sampul Raya" style="width: 70px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));">
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px; font-weight: 600;">Sampul Pilihan</p>
+                </div>
+                
+                <!-- Plus Sign -->
+                <div style="font-size: 1.8rem; color: var(--raya-green); font-weight: 900;">+</div>
+                
+                <!-- Card Preview (Miniature using layout) -->
+                <div class="card-preview" style="flex: 1; text-align: center;">
+                    <div style="background: white; border: 2px solid var(--raya-gold); border-radius: 8px; padding: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: inline-block;">
+                        <img src="assets/MK Logo Bulat.png" style="width: 24px; margin-bottom: 5px;">
+                        <div style="width: 40px; height: 3px; background: #e2e8f0; margin: 3px auto; border-radius: 2px;"></div>
+                        <div style="width: 30px; height: 3px; background: #e2e8f0; margin: 3px auto; border-radius: 2px;"></div>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px; font-weight: 600;">Kad Anda</p>
+                </div>
+            </div>
+
+            <button id="modal-share-btn" class="btn btn-primary w-full" style="font-size: 1.05rem; padding: 1rem;">
+                📸 Kongsi ke Media Sosial untuk Buka Sampul
+            </button>
+            <button id="modal-cancel-btn" class="btn btn-link w-full mt-2" style="font-size: 0.95rem;">Batal</button>
         </div>
     </div>
 
