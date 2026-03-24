@@ -92,13 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 screenshotTemplate.style.display = 'flex';
                 screenshotTemplate.style.visibility = 'visible';
-                const canvas = await html2canvas(screenshotTemplate, { useCORS: true, scale: 2 });
+                
+                // Allow layout to render before capture
+                await new Promise(resolve => setTimeout(resolve, 300));
+
+                const canvas = await html2canvas(screenshotTemplate, { useCORS: true, scale: 1.5 });
                 screenshotTemplate.style.display = 'none';
                 screenshotTemplate.style.visibility = 'hidden';
 
-                const dataUrl = canvas.toDataURL('image/png');
-                const blob = await (await fetch(dataUrl)).blob();
-                const file = new File([blob], 'Peranan_Raya_Maukerja.png', { type: 'image/png' });
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
 
                 // 2. Store Screenshot Data & Redirect to Share Screen
                 localStorage.setItem('raya_result_screenshot', dataUrl);
