@@ -7,10 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (scanBtn) {
         scanBtn.addEventListener('click', async () => {
             const url = profileUrlInput.value.trim();
+            const ucapanInput = document.getElementById('ucapan-text');
+            const greeting = ucapanInput ? ucapanInput.value.trim() : '';
 
             if (!url) {
                 alert('Sila masukkan pautan profil Maukerja anda terlebih dahulu!');
                 profileUrlInput.focus();
+                return;
+            }
+            if (!greeting) {
+                alert('Sila tulis ucapan Raya anda!');
+                if (ucapanInput) ucapanInput.focus();
                 return;
             }
 
@@ -31,10 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (loadingState) loadingState.classList.remove('hidden');
 
             // 3. Fake AI Scan Delay
-            await new Promise(resolve => setTimeout(resolve, 4000));
+            await new Promise(resolve => setTimeout(resolve, 3000));
 
             // 4. Redirect to Results Page
-            window.location.href = `results.html?url=${encodeURIComponent(url)}`;
+            window.location.href = `results.html?url=${encodeURIComponent(url)}&greeting=${encodeURIComponent(greeting)}`;
         });
     }
 

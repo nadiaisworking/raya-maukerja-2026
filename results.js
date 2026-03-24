@@ -13,37 +13,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const profileUrl = urlParams.get('url') || '';
 
-    // 1. Generate Enriched Roles
-    let roles = [];
-    if (profileUrl.toLowerCase().includes('engineer') || profileUrl.toLowerCase().includes('it')) {
-        roles = [
-            { title: "Betulkan Wifi Rumah", desc: "Anda jadi hero tech keluarga bila internet 'selow' pagi Raya ni! 📶", icon: "⚡" },
-            { title: "Set-up TV Pintar Tokwan", desc: "Tolong Tokwan buka YouTube cari lagu Raya lama-lama. 📺", icon: "👴" },
-            { title: "Mangsa Soalan 'Kenapa Phone Mak Lambat?'", desc: "Sabar jelah delete cache beribu gambar WhatsApp mak. 📱", icon: "🫠" }
-        ];
-    } else {
-        roles = [
-            { title: "Bakar Lemang Tengah Malam", desc: "Anda jadi hero dapur raya yang gigih jaga api malam ni! 🔥", icon: "🪵" },
-            { title: "Tukang Beli Ais Batu", desc: "Bila air balang tak sejuk, anda lah yang kena rempit ke kedai. 🧊", icon: "🏍️" },
-            { title: "Jaga Kucing Time Orang Beraya", desc: "Tugas paling mencabar: pastikan Oyen tak lari keluar rumah. 🐈", icon: "🐾" }
-        ];
+    // 1. Setup Kad Raya Data
+    const greeting = urlParams.get('greeting') || 'Selamat Hari Raya! Maaf Zahir dan Batin.';
+    let userName = "Anda";
+    if (profileUrl) {
+        const parts = profileUrl.split('/');
+        const potentialName = parts[parts.length - 1] || parts[parts.length - 2];
+        if (potentialName && potentialName !== 'public' && potentialName !== 'profile') {
+            userName = potentialName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        }
     }
 
-    if (rolesContainer) {
-        rolesContainer.innerHTML = '';
-        roles.forEach((role, index) => {
-            const card = document.createElement('div');
-            card.className = 'role-card-festive';
-            card.style.animationDelay = `${index * 0.3}s`;
-            card.innerHTML = `
-                <div class="role-body">
-                    <h3 class="role-title-new">${role.title} ${role.icon}</h3>
-                    <p class="role-desc-new">${role.desc}</p>
-                </div>
-            `;
-            rolesContainer.appendChild(card);
-        });
-    }
+    const displayNameEl = document.getElementById('display-name');
+    const displayGreetingEl = document.getElementById('display-greeting');
+    const exportNameEl = document.getElementById('export-name');
+    const exportGreetingEl = document.getElementById('export-greeting');
+    
+    if (displayNameEl) displayNameEl.textContent = `${userName}`;
+    if (displayGreetingEl) displayGreetingEl.textContent = `"${greeting}"`;
+    if (exportNameEl) exportNameEl.textContent = `${userName}`;
+    if (exportGreetingEl) exportGreetingEl.textContent = `"${greeting}"`;
 
     // 2. Duit Raya Prize Logic
     const commonPrizes = [0.30, 0.36, 0.41, 0.45, 0.48, 0.53, 0.58, 0.70, 0.69, 0.67, 0.74, 0.81, 0.89, 0.94, 1.23, 1.30, 1.40, 1.50, 1.78, 2.20, 2.50, 2.80, 3.00, 3.33, 3.60];
@@ -99,18 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // 1. Generate Image
-                if (exportRolesList) {
-                    const medals = ["🥇", "🥈", "🥉"];
-                    exportRolesList.innerHTML = roles.map((role, index) => `
-                        <div class="export-role-card">
-                            <div class="export-rank">${medals[index] || "✨"}</div>
-                            <div class="export-role-content">
-                                <h3 class="export-role-title">${role.title}</h3>
-                                <p class="export-role-desc">${role.desc}</p>
-                            </div>
-                        </div>
-                    `).join('');
-                }
+                // Kad Raya data is already populated on DOMContentLoaded
 
                 screenshotTemplate.style.display = 'flex';
                 screenshotTemplate.style.visibility = 'visible';

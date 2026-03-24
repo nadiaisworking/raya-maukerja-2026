@@ -75,14 +75,7 @@
 
     <main class="main-container">
         <section id="results-page" class="state-container">
-            <div class="results-header">
-                <h2>🌙 Top 3 Peranan Raya Anda 🌙</h2>
-                <p>Berdasarkan profil Maukerja anda, inilah yang akan anda lakukan pada Raya ini!</p>
-            </div>
 
-            <div class="roles-grid" id="roles-container">
-                <!-- Roles will be injected here via JS -->
-            </div>
 
 
             <!-- Reward Section -->
@@ -220,15 +213,16 @@
 
         <div class="export-header">
             <img src="assets/MK Logo Panjang.png" alt="Maukerja Logo" class="export-logo">
-            <h1 class="export-title">✨ Peranan Raya Saya <br> Tahun Ini ✨</h1>
+            <h1 class="export-title">✨ Kad Raya Saya ✨</h1>
         </div>
 
-        <div class="export-roles" id="export-roles-list">
-            <!-- Populated by JS -->
+        <div class="export-greeting-container" style="background: rgba(255,255,255,0.85); border-radius: 40px; padding: 4rem; margin: 4rem 4rem; border: 4px dashed var(--raya-gold); text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 500px; box-shadow: 0 20px 40px rgba(0,0,0,0.05);">
+            <p id="export-greeting" style="font-size: 3.2rem; font-weight: 600; color: var(--text-primary); line-height: 1.6; margin-bottom: 4rem; font-style: italic;">"Selamat Hari Raya! Maaf Zahir dan Batin"</p>
+            <h3 id="export-name" style="font-size: 3.8rem; font-weight: 900; color: var(--raya-green-dark);">Anda</h3>
         </div>
 
         <div class="export-footer">
-            <p class="export-footer-text">🧧 Cuba juga Peranan Raya anda!</p>
+            <p class="export-footer-text">🧧 Cipta Kad Raya anda di</p>
             <p class="export-url">raya-maukerja-2026.vercel.app</p>
         </div>
     </div>
